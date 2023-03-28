@@ -1,0 +1,228 @@
+\begin{thebibliography}{46}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+
+\bibitem[{Abbate(1999)}]{abbate1999}
+Abbate, J., Sep. 1999. {Getting small: a short history of the personal
+  computer}. Proc. IEEE 87~(9), 1695--1698.
+
+\bibitem[{Backus(1978)}]{backus1978}
+Backus, J., 1978. The history of fortran i, ii, and iii. ACM Sigplan Notices
+  13~(8), 165--180.
+
+\bibitem[{Batch and Elmqvist(2017)}]{batch2017}
+Batch, A., Elmqvist, N., 2017. The interactive visualization gap in initial
+  exploratory data analysis. IEEE transactions on visualization and computer
+  graphics 24~(1), 278--287.
+
+\bibitem[{Becker and Cleveland(1987)}]{becker1987}
+Becker, R.~A., Cleveland, W.~S., 1987. Brushing scatterplots. Technometrics
+  29~(2), 127--142.
+
+\bibitem[{Bertin(1967)}]{bertin1967}
+Bertin, J., 1967. {Sémiologie Graphique: Les diagrammes, les réseaux, les
+  cartes}. Gauthier-Villars.
+
+\bibitem[{Bostock et~al.(2011)Bostock, Ogievetsky, and Heer}]{bostock2011}
+Bostock, M., Ogievetsky, V., Heer, J., 2011. D$^3$ data-driven documents. IEEE
+  transactions on visualization and computer graphics 17~(12), 2301--2309.
+
+\bibitem[{Brodbeck et~al.(2009)Brodbeck, Mazza, and Lalanne}]{brodbeck2009}
+Brodbeck, D., Mazza, R., Lalanne, D., 2009. {Interactive Visualization - A
+  Survey}. In: {Human Machine Interaction}. Springer, Berlin, Germany, pp.
+  27--46.
+
+\bibitem[{Buja et~al.(1996)Buja, Cook, and Swayne}]{buja1996}
+Buja, A., Cook, D., Swayne, D.~F., 1996. Interactive high-dimensional data
+  visualization. Journal of computational and graphical statistics 5~(1),
+  78--99.
+
+\bibitem[{Burleson(2020)}]{flare2020}
+Burleson, T., Nov. 2020. {Flare {$\vert$} Data Visualization for the Web}.
+  [Online; accessed 18. Oct. 2022].
+\newline\urlprefix\url{https://blokt.com/tool/prefuse-flare}
+
+\bibitem[{Dix and Ellis(1998)}]{dix1998}
+Dix, A., Ellis, G., May 1998. {Starting simple: adding value to static
+  visualisation through simple interaction}. In: {AVI '98: Proceedings of the
+  working conference on Advanced visual interfaces}. Association for Computing
+  Machinery, New York, NY, USA, pp. 124--134.
+
+\bibitem[{Donoho et~al.(1988)Donoho, Donoho, and Gasko}]{donoho1988}
+Donoho, A.~W., Donoho, D.~L., Gasko, M., 1988. Macspin: Dynamic graphics on a
+  desktop computer. IEEE Computer Graphics and applications 8~(4), 51--58.
+
+\bibitem[{Fisherkeller et~al.(1974)Fisherkeller, Friedman, and
+  Tukey}]{fisherkeller1974}
+Fisherkeller, M.~A., Friedman, J.~H., Tukey, J.~W., 1974. An interactive
+  multidimensional data display and analysis system. Tech. rep., SLAC National
+  Accelerator Lab., Menlo Park, CA (United States).
+
+\bibitem[{Fowlkes(1969)}]{fowlkes1969}
+Fowlkes, E., 1969. User’s manual for a system fo active probability plotting
+  on graphic-2. Tech-nical Memorandum, AT\&T Bell Labs, Murray Hill, NJ .
+
+\bibitem[{Friendly(2006)}]{friendly2006}
+Friendly, M., 2006. A brief history of data visualization. In: Chen, C.,
+  H\"ardle, W., Unwin, A. (Eds.), Handbook of Computational Statistics: Data
+  Visualization. Vol. III. Springer-Verlag, Heidelberg, pp. ???--???, (In
+  press).
+
+\bibitem[{Friendly and Wainer(2021)}]{friendly2021}
+Friendly, M., Wainer, H., 2021. A history of data visualization and graphic
+  communication. Harvard University Press.
+
+\bibitem[{Heer et~al.(2005)Heer, Card, and Landay}]{heer2005}
+Heer, J., Card, S.~K., Landay, J.~A., Apr. 2005. {prefuse: a toolkit for
+  interactive information visualization}. In: {CHI '05: Proceedings of the
+  SIGCHI Conference on Human Factors in Computing Systems}. Association for
+  Computing Machinery, New York, NY, USA, pp. 421--430.
+
+\bibitem[{{Highcharts Team}(2023)}]{highcharts2023}
+{Highcharts Team}, Mar. 2023. {Interactive javascript charts library}. [Online;
+  accessed 15. Mar. 2023].
+\newline\urlprefix\url{https://www.highcharts.com}
+
+\bibitem[{Holtz(2022)}]{holtz2022}
+Holtz, Y., Aug. 2022. {Interactive charts {$\vert$} the R Graph Gallery}.
+  [Online; accessed 22. Aug. 2022].
+\newline\urlprefix\url{https://r-graph-gallery.com/interactive-charts.html}
+
+\bibitem[{Jankun-Kelly et~al.(2007)Jankun-Kelly, Ma, and
+  Gertz}]{jankun2007model}
+Jankun-Kelly, T., Ma, K.-L., Gertz, M., 2007. A model and framework for
+  visualization exploration. IEEE Transactions on Visualization and Computer
+  Graphics 13~(2), 357--369.
+
+\bibitem[{Kehrer et~al.(2012)Kehrer, Boubela, Filzmoser, and
+  Piringer}]{kehrer2012}
+Kehrer, J., Boubela, R.~N., Filzmoser, P., Piringer, H., 2012. A generic model
+  for the integration of interactive visualization and statistical computing
+  using r. In: 2012 IEEE Conference on Visual Analytics Science and Technology
+  (VAST). IEEE, pp. 233--234.
+
+\bibitem[{Keim(2002)}]{keim2002}
+Keim, D.~A., 2002. Information visualization and visual data mining. IEEE
+  transactions on Visualization and Computer Graphics 8~(1), 1--8.
+
+\bibitem[{Kruskal(1965)}]{kruskal1964}
+Kruskal, J.~B., Oct. 1965. {Multidimensional Scaling}. [Online; accessed 13.
+  Oct. 2022].
+\newline\urlprefix\url{https://community.amstat.org/jointscsg-section/media/videos}
+
+\bibitem[{Leman et~al.(2013)Leman, House, Maiti, Endert, and North}]{leman2013}
+Leman, S.~C., House, L., Maiti, D., Endert, A., North, C., 2013. Visual to
+  parametric interaction (v2pi). PloS one 8~(3), e50474.
+
+\bibitem[{Pike et~al.(2009)Pike, Stasko, Chang, and O'connell}]{pike2009}
+Pike, W.~A., Stasko, J., Chang, R., O'connell, T.~A., 2009. The science of
+  interaction. Information visualization 8~(4), 263--274.
+
+\bibitem[{{Plotly Inc.}(2022)}]{plotly2022}
+{Plotly Inc.}, Aug. 2022. {Part 4. Interactive Graphing and Crossfiltering
+  {$\vert$} Dash for Python Documentation {$\vert$} Plotly}. [Online; accessed
+  22. Aug. 2022].
+\newline\urlprefix\url{https://dash.plotly.com/interactive-graphing}
+
+\bibitem[{{Plotly Inc.}(2023)}]{plotly2023}
+{Plotly Inc.}, Mar. 2023. {Plotly: Low-Code Data App Development}. [Online;
+  accessed 15. Mar. 2023].
+\newline\urlprefix\url{https://plotly.com}
+
+\bibitem[{Rheingans(2002)}]{rheingans2002}
+Rheingans, P., 2002. Are we there yet? exploring with dynamic visualization.
+  IEEE Computer Graphics and Applications 22~(1), 6--10.
+
+\bibitem[{Satyanarayan et~al.(2016)Satyanarayan, Moritz, Wongsuphasawat, and
+  Heer}]{satyanarayan2016}
+Satyanarayan, A., Moritz, D., Wongsuphasawat, K., Heer, J., 2016. Vega-lite: A
+  grammar of interactive graphics. IEEE transactions on visualization and
+  computer graphics 23~(1), 341--350.
+
+\bibitem[{Satyanarayan et~al.(2015)Satyanarayan, Russell, Hoffswell, and
+  Heer}]{satyanarayan2015}
+Satyanarayan, A., Russell, R., Hoffswell, J., Heer, J., 2015. Reactive vega: A
+  streaming dataflow architecture for declarative interactive visualization.
+  IEEE transactions on visualization and computer graphics 22~(1), 659--668.
+
+\bibitem[{Sinha et~al.(2010)Sinha, Shahi, and Shankar}]{sinha2010}
+Sinha, G., Shahi, R., Shankar, M., 2010. Human computer interaction. In: 2010
+  3rd International Conference on Emerging Trends in Engineering and
+  Technology. IEEE, pp. 1--4.
+
+\bibitem[{Swayne et~al.(1998)Swayne, Cook, and Buja}]{swayne1998}
+Swayne, D.~F., Cook, D., Buja, A., Mar. 1998. {XGobi: Interactive Dynamic Data
+  Visualization in the X Window System}. J. Comput. Graph. Stat. 7~(1),
+  113--130.
+
+\bibitem[{Swayne et~al.(2003)Swayne, Lang, Buja, and Cook}]{swayne2003}
+Swayne, D.~F., Lang, D.~T., Buja, A., Cook, D., Aug. 2003. {GGobi: evolving
+  from XGobi into an extensible framework for interactive data visualization}.
+  Comput. Statist. Data Anal. 43~(4), 423--444.
+
+\bibitem[{{Tableau Team}(2023)}]{tableau2023}
+{Tableau Team}, Mar. 2023. {Tableau: Business Intelligence and Analytics
+  Software}. [Online; accessed 16. Mar. 2023].
+\newline\urlprefix\url{https://www.tableau.com}
+
+\bibitem[{{The Open Source Initiative}(2023)}]{mit2023}
+{The Open Source Initiative}, Feb. 2023. {The MIT License}. [Online; accessed
+  29. Mar. 2023].
+\newline\urlprefix\url{https://opensource.org/license/mit}
+
+\bibitem[{Theus(2002)}]{theus2002}
+Theus, M., Nov. 2002. {Interactive Data Visualization using Mondrian}. J. Stat.
+  Soft. 7, 1--9.
+
+\bibitem[{Tukey(1962)}]{tukey1962}
+Tukey, J.~W., 1962. The future of data analysis. The annals of mathematical
+  statistics 33~(1), 1--67.
+
+\bibitem[{Tukey et~al.(1977)}]{tukey1977}
+Tukey, J.~W., et~al., 1977. Exploratory data analysis. Vol.~2. Reading, MA.
+
+\bibitem[{Unwin(1999)}]{unwin1999}
+Unwin, A., Mar. 1999. {Requirements for interactive graphics software for
+  exploratory data analysis}. Comput. Statist. 14~(1), 7--22.
+
+\bibitem[{Urbanek(2011)}]{urbanek2011}
+Urbanek, S., 2011. iplots extreme: next-generation interactive graphics design
+  and implementation of modern interactive graphics. Computational Statistics
+  26~(3), 381--393.
+
+\bibitem[{Urbanek and Theus(2003)}]{urbanek2003}
+Urbanek, S., Theus, M., 2003. iplots: high interaction graphics for r. In:
+  Proceedings of the 3rd International Workshop on Distributed Statistical
+  Computing. Citeseer.
+
+\bibitem[{VanderPlas et~al.(2018)VanderPlas, Granger, Heer, Moritz,
+  Wongsuphasawat, Satyanarayan, Lees, Timofeev, Welsh, and
+  Sievert}]{vanderplas2018}
+VanderPlas, J., Granger, B., Heer, J., Moritz, D., Wongsuphasawat, K.,
+  Satyanarayan, A., Lees, E., Timofeev, I., Welsh, B., Sievert, S., 2018.
+  Altair: interactive statistical visualizations for python. Journal of open
+  source software 3~(32), 1057.
+
+\bibitem[{Wickham(2010)}]{wickham2010}
+Wickham, H., 2010. A layered grammar of graphics. Journal of Computational and
+  Graphical Statistics 19~(1), 3--28.
+
+\bibitem[{Wilkinson(2012)}]{wilkinson2012}
+Wilkinson, L., 2012. The grammar of graphics. Springer.
+
+\bibitem[{Wirfs-Brock and Eich(2020)}]{wirfs-brock2020}
+Wirfs-Brock, A., Eich, B., Jun. 2020. {JavaScript: the first 20 years}. Proc.
+  ACM Program. Lang. 4~(HOPL), 1--189.
+
+\bibitem[{Yi et~al.(2007)Yi, ah~Kang, Stasko, and Jacko}]{yi2007}
+Yi, J.~S., ah~Kang, Y., Stasko, J., Jacko, J.~A., 2007. Toward a deeper
+  understanding of the role of interaction in information visualization. IEEE
+  transactions on visualization and computer graphics 13~(6), 1224--1231.
+
+\bibitem[{Young et~al.(2011)Young, Valero-Mora, and Friendly}]{young2011}
+Young, F.~W., Valero-Mora, P.~M., Friendly, M., 2011. Visual statistics: seeing
+  data with dynamic interactive graphics. John Wiley \& Sons.
+
+\end{thebibliography}

@@ -1,0 +1,159 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (preloaded format=pdflatex 2022.10.6)  29 MAR 2023 12:35
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**template.tex
+(./template.tex
+LaTeX2e <2021-11-15> patch level 1
+L3 programming layer <2022-02-21> (/home/adam/.TinyTeX/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
+(/home/adam/.TinyTeX/texmf-dist/tex/latex/base/size12.clo
+File: size12.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count185
+\c@section=\count186
+\c@subsection=\count187
+\c@subsubsection=\count188
+\c@paragraph=\count189
+\c@subparagraph=\count190
+\c@figure=\count191
+\c@table=\count192
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+\bibindent=\dimen138
+) (/home/adam/.TinyTeX/texmf-dist/tex/latex/natbib/natbib.sty
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip49
+\bibsep=\skip50
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count193
+) (/home/adam/.TinyTeX/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+ (/home/adam/.TinyTeX/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks16
+) (/home/adam/.TinyTeX/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2021/03/04 v1.4d Standard LaTeX Graphics (DPC,SPQR)
+ (/home/adam/.TinyTeX/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
+) (/home/adam/.TinyTeX/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 107.
+ (/home/adam/.TinyTeX/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen139
+\Gin@req@width=\dimen140
+) (/home/adam/.TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2022-02-07 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count194
+\l__pdf_internal_box=\box50
+) (./template.aux)
+\openout1 = `template.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+ (/home/adam/.TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+ (/home/adam/.TinyTeX/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+)) [1
+
+{/home/adam/.TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 129.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 129.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 129.
+
+Underfull \hbox (badness 2671) in paragraph at lines 142--142
+[]\OT1/cmr/m/n/12 Change re-flects an un-der-ly-ing
+ []
+
+
+Overfull \hbox (1.19112pt too wide) in paragraph at lines 144--144
+[]\OT1/cmr/m/n/12 (Cognitive)| 
+ []
+
+[3] [4] [5] [6]
+
+Package natbib Warning: Citation `bick:etal:2009' on page 7 undefined on input line 272.
+
+
+Package natbib Warning: Citation `scot:lee:wild:2007' on page 7 undefined on input line 276.
+
+
+Package natbib Warning: Citation `demp:lair:rubi:1977' on page 7 undefined on input line 279.
+
+
+Package natbib Warning: Citation `cham:1998' on page 7 undefined on input line 284.
+
+
+Package natbib Warning: Citation `MR2526777' on page 7 undefined on input line 288.
+
+
+Package natbib Warning: Citation `gowe:1966' on page 7 undefined on input line 291.
+
+
+Package natbib Warning: Citation `murr:ihak:2000' on page 7 undefined on input line 295.
+
+[7]
+
+Package natbib Warning: Citation `efro:2009' on page 8 undefined on input line 309.
+
+
+Package natbib Warning: Citation `MR2415600' on page 8 undefined on input line 309.
+
+
+Package natbib Warning: Citation `MR2508377' on page 8 undefined on input line 309.
+
+
+Overfull \hbox (21.54214pt too wide) in paragraph at lines 337--361
+ [][] 
+ []
+
+
+Overfull \hbox (127.93312pt too wide) in paragraph at lines 407--412
+[]\OT1/cmr/m/n/12 Although op-tional, it is a good idea to try up-date a per-sonal web-page (ide-ally \OT1/cmss/m/n/12 www.stat.auckland.ac.nz/$\OMS/cmsy/m/n/12 ^^X$\OT1/cmss/m/n/12 myStudentName\OT1/cmr/m/n/12 )
+ []
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 422.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 422.
+[8] [9] (./template.bbl [10] [11])
+
+Package natbib Warning: There were undefined citations.
+
+[12] (./template.aux) ) 
+Here is how much of TeX's memory you used:
+ 1501 strings out of 480238
+ 24173 string characters out of 5895836
+ 323307 words of memory out of 5000000
+ 19482 multiletter control sequences out of 15000+600000
+ 475378 words of font info for 48 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 55i,10n,62p,1775b,285s stack positions out of 5000i,500n,10000p,200000b,80000s
+ </home/adam/.TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on template.pdf (12 pages, 184953 bytes).
+PDF statistics:
+ 108 PDF objects out of 1000 (max. 8388607)
+ 68 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+
