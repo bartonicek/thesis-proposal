@@ -1,4 +1,4 @@
-\begin{thebibliography}{46}
+\begin{thebibliography}{49}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \expandafter\ifx\csname url\endcsname\relax
   \def\url#1{\texttt{#1}}\fi
@@ -44,6 +44,10 @@ Burleson, T., Nov. 2020. {Flare {$\vert$} Data Visualization for the Web}.
   [Online; accessed 18. Oct. 2022].
 \newline\urlprefix\url{https://blokt.com/tool/prefuse-flare}
 
+\bibitem[{Chen et~al.(2008)Chen, H{\"a}rdle, Unwin, and Friendly}]{chen2008}
+Chen, C.-h., H{\"a}rdle, W., Unwin, A., Friendly, M., 2008. A brief history of
+  data visualization. Handbook of data visualization , 15--56.
+
 \bibitem[{Dix and Ellis(1998)}]{dix1998}
 Dix, A., Ellis, G., May 1998. {Starting simple: adding value to static
   visualisation through simple interaction}. In: {AVI '98: Proceedings of the
@@ -60,15 +64,13 @@ Fisherkeller, M.~A., Friedman, J.~H., Tukey, J.~W., 1974. An interactive
   multidimensional data display and analysis system. Tech. rep., SLAC National
   Accelerator Lab., Menlo Park, CA (United States).
 
+\bibitem[{Fong and Spivak(2019)}]{fong2019}
+Fong, B., Spivak, D.~I., 2019. An invitation to applied category theory: seven
+  sketches in compositionality. Cambridge University Press.
+
 \bibitem[{Fowlkes(1969)}]{fowlkes1969}
 Fowlkes, E., 1969. User’s manual for a system fo active probability plotting
   on graphic-2. Tech-nical Memorandum, AT\&T Bell Labs, Murray Hill, NJ .
-
-\bibitem[{Friendly(2006)}]{friendly2006}
-Friendly, M., 2006. A brief history of data visualization. In: Chen, C.,
-  H\"ardle, W., Unwin, A. (Eds.), Handbook of Computational Statistics: Data
-  Visualization. Vol. III. Springer-Verlag, Heidelberg, pp. ???--???, (In
-  press).
 
 \bibitem[{Friendly and Wainer(2021)}]{friendly2021}
 Friendly, M., Wainer, H., 2021. A history of data visualization and graphic
@@ -112,9 +114,16 @@ Kruskal, J.~B., Oct. 1965. {Multidimensional Scaling}. [Online; accessed 13.
   Oct. 2022].
 \newline\urlprefix\url{https://community.amstat.org/jointscsg-section/media/videos}
 
+\bibitem[{Leinster(2014)}]{leinster2014}
+Leinster, T., 2014. Basic category theory. Vol. 143. Cambridge University
+  Press.
+
 \bibitem[{Leman et~al.(2013)Leman, House, Maiti, Endert, and North}]{leman2013}
 Leman, S.~C., House, L., Maiti, D., Endert, A., North, C., 2013. Visual to
   parametric interaction (v2pi). PloS one 8~(3), e50474.
+
+\bibitem[{Milewski(2018)}]{Milewski2018}
+Milewski, B., 2018. Category theory for programmers. Blurb.
 
 \bibitem[{Pike et~al.(2009)Pike, Stasko, Chang, and O'connell}]{pike2009}
 Pike, W.~A., Stasko, J., Chang, R., O'connell, T.~A., 2009. The science of

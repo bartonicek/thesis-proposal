@@ -12,6 +12,9 @@
  \usepackage{natbib}    % For BibTeX
  \usepackage{graphicx}  % To import .pdf files
 %\usepackage{times}
+ \usepackage{amsfonts}
+ \usepackage{amsmath}
+ \usepackage{amssymb}
 
  \oddsidemargin  -10mm
  \evensidemargin -10mm
@@ -107,13 +110,18 @@ The goal of the proposed project is to lay down the theoretical foundations for 
 \label{sec:background}
 
 \subsection{What Event Counts as \textit{Interactive} Data Visualization?}
+\label{sec:whatcounts}
 
 It may seem surprising, but despite the widespread popularity of interactive data visualizations, there seems to be little consensus as to what actually makes a data visualization interactive. The term gets used by different researchers in vastly different contexts, sometimes in arguably conflicting ways. As such, for the purposes of the present text, it is important to disambiguate what is meant by "interactive data visualization".  
 
 Firstly, there is the issue of whether "interactive data visualization" refers to an object or system, or to an action, undertaken by a human being. \cite{pike2009} note that 
 "interaction" is an overloaded term that can refer to either the concrete tools which users use to manipulate visual information or to the more abstract "human interaction with information" - the back-and-forth between the user and the visual information presented to them \citep[see also][]{yi2007}. The more abstract action definition is more often emphasized in the field of Human Computer Interaction \citep[see e.g.][]{sinha2010}. For the purpose of this text, the object/system definition will be used - interactive data visualizations are concrete objects that are produced by (typically computer-based) systems/pipelines that take in raw data and produce images that can be interpreted and manipulated by humans \citep{brodbeck2009}.
 
+\subsubsection{Simple Interactivity}
+
 But even after narrowing down the focus to interactive data visualizations as objects, a lot of conceptual ambiguity remains. Some researchers use a \textbf{simple} definition and define interactive visualizations as any visualizations that can be actively manipulated by the user \citep{brodbeck2009}. Other researchers emphasize time or the \textbf{temporal} aspect, with visualizations being "interactive" when there is little lag between the user's input and changes to the visualization \citep{becker1987,buja1996}. Complicating the matters futher, some even make the distinction between "interactive" and "dynamic" manipulation, where interactive manipulation happens discretely, such as when pressing a button or selecting an item from a drop-down menu, whereas dynamic manipulation happens continuously, for example when smoothly moving a slider or by clicking-and-dragging \citep{rheingans2002,jankun2007model}. These tentative definitions present relatively little restriction on what counts as interactive visualization: for example, one could argue that the process of a user typing code into a command line to generate new plots could be considered interactive visualization, as long as it happens fast enough. 
+
+\subsubsection{Complex Interactivity}
 
 Other researchers do not seem to be satisfied with these broad definitions. For many, the defining feature of interactive data visualization is the ability to \textbf{query} different parts of the dataset (by e.g. zooming, panning, and filtering), and the reactive propagation of changes between connected or \textbf{"linked"} parts of interactive figures \citep{kehrer2012,buja1996,keim2002,unwin1999}. Similarly, in Visual Analytics (VA) research, a distinction is made between "surface-level" (or "low-level") interactions, which manipulate attributes of the visual domain only (e.g. zooming and panning), and \textbf{"parametric"} (or "high-level") interactions, which manipulate attributes of mathematical models or algorithms underlying the visualization \citep{leman2013,pike2009}. 
 
@@ -153,22 +161,32 @@ The conceptual ambiguity about what gets called "interactive" visualization matt
 \subsection{Brief History of Interactive Data Visualization in Statistics}
 \label{sec:briefhistory}
 
-Static data visualization has a rich and intricate history \citep[see e.g.][]{dix1998,friendly2006, friendly2021,young2011}. Briefly, for a long time, it was considered at best an auxiliary field, however, at the end of 1950's, a series of developments lead to a great increase in its prominence. Firstly, at the theoretical level, the work of Tukey (\citeyear{tukey1962,tukey1977}) and \cite{bertin1967} established data visualization as valuable discipline in its own right. Secondly, at the applied level, the development of personal computers \citep[see e.g.][]{abbate1999} and high-level programming languages, most notably FORTRAN in 1954 \citep{backus1978}, made production of figures easy and accessible to the wider public. Combined, these developments lead to a surge in the use and dissemination of data visualizations.
+\subsubsection{Static Visualization Goes Digital}
+
+Static data visualization has a rich and intricate history \citep[see e.g.][]{dix1998,chen2008, friendly2021,young2011}. Briefly, for a long time, it was considered at best an auxiliary field, however, at the end of 1950's, a series of developments lead to a great increase in its prominence. Firstly, at the theoretical level, the work of Tukey (\citeyear{tukey1962,tukey1977}) and \cite{bertin1967} established data visualization as valuable discipline in its own right. Secondly, at the applied level, the development of personal computers \citep[see e.g.][]{abbate1999} and high-level programming languages, most notably FORTRAN in 1954 \citep{backus1978}, made production of figures easy and accessible to the wider public. Combined, these developments lead to a surge in the use and dissemination of data visualizations.
 
 Final development in the field of static data visualization that is important to mention was the Grammar of Graphics introduced by Leland \cite{wilkinson2012}. Prior to Wilkinson's work, data visualization systems tended to come in two flavors: low-level ones, in which the users had to create visualizations from scratch using graphical primitives, and high-level ones, in which the users could select from a limited range of ready-made visualization types. Wilkinson, building upon the work of Bertin and Tukey, developed theory for a mid-level visualization system - Grammar of Graphics - which allows the users to specify a broad range of statistical graphics by declaratively combining abstract plot attributes such as aesthetics, scales, coordinates, and geometric objects \citep{wilkinson2012}. Grammar of Graphics has been successfully implemented in several software packages, most notably the popular \textbf{ggplot2} R package \citep{wickham2010} and the proprietary software \textbf{Tableau} \citep{tableau2023}. 
+
+\subsubsection{Birth of Interactive Visualization}
 
 As static visualization entered the computer age, interactive data visualization would not be left far behind. Early systems appeared in the 1960's and 1970's, and tended to be specialized for one specific task. For example, \cite{fowlkes1969} used interactive visualization to show how probability densities reacted to change of parameters and transformations, and \cite{kruskal1964} used interactive visualization to showcase his multi-dimensional scaling algorithm (a way of embedding objects within a common space based on pairwise distance measurements). The first "general-purpose" system was \textbf{PRIM-9} \citep{fisherkeller1974}, which allowed for exploration of high-dimensional data in scatterplots using projection, rotation, subsetting and masking. Later systems grew on to become even more general and ambitious. For example, \textbf{MacSpin} \citep{donoho1988} and \textbf{XGobi} \citep{swayne1998} provided features such as interactive scaling, rotation, linked selection (or "brushing"), and interactive plotting of smooth fits in scatterplots, as well as interactive parallel coordinate plots and grand tours.
 
 Following the turn of the 21st century, interactive data visualization systems saw even scope and flexibility and also began to be integrated into general-purpose statistical computing software. The successor system to XGobi, \textbf{GGobi} \citep{swayne2003} was made to be directly embeddable in R. Java-based \textbf{Mondrian} \citep{theus2002} allowed for sophisticated linked interaction between many different types of plots including scatteplots, histograms, barplots, scatterplot, mosaic plots, parallel coordinates plots, and maps. Finally, \textbf{iPlots} \citep{urbanek2003} implemented a general framework for interactive plotting that was not only embedded in R but could be directly programmatically manipulated, and was later further expanded and made performant for big data in \textbf{iPlots eXtreme} \citep{urbanek2011}.
 
-Common features that these statistics-based interactive data visualization systems supported were: 1) multiple ready-made plot-types 2) interaction between multiple plots with shared underlying data and state, and 3) interactive manipulation of model parameters. They tended to be oriented towards scientific audience, with data exploration as the primary goal.     
+\subsubsection{Common Features of Statistical Systems}
+
+The statistics-based interactive data visualization systems came in various forms, however, they generally tended to support features such as multiple ready-made plot-types, interaction between multiple plots with shared underlying data and state, and interactive manipulation of model parameters. They tended to be oriented towards scientific audience, with data exploration as the primary goal. Finally, they tended to be made to be directly embedabble and interoperable with general-purpose statistical computing software.      
 
 \subsection{The Web and Current Age Interactive Data Visualization}
 \label{sec:currentage}
 
+\subsubsection{Web-native Interactivity}
+
 The developments in interactive data visualization within the field of Statistics were paralleled by those within Computer Science. Most notably, the rise of Web technologies in the mid 1990's and the appearance of JavaScript in 1995 as a high-level general-purpose programming language for the Web \citep[for a description of the history, see e.g.][]{wirfs-brock2020}, created an extremely versatile platform for highly-reactive and portable applications. JavaScript was created with the explicit purpose of making the Web interactive, and the fast dissemination of standardized web-browsers meant that online interactive applications could be accessed by anyone, from anywhere. Interactive data visualization became just one of many technologies highly sought after within the fledgling Web ecosystem. 
 
-The very early systems such as \textbf{Prefuse} in 2005 \citep{heer2005} and \textbf{Flare} in 2008 \citep{flare2020} relied on plugins (Java and Adobe Flash Player, respectively). However, in the early 2010's, several true Web-native JavaScript-based interactive data visualization systems emerged. The most prominent among these is \textbf{D3}.js \citep{bostock2011}. D3 is a broad and general framework for manipulating HTML documents using data and displaying it with visualizations. It is in popular use still to this day and has spawned a number of specialized, higher-level data visualization libraries that abstract away the details and provide an interface to commonly used statistical plots, such as the also very prominent \textbf{plotly}.js \citep{plotly2022}. Importantly, in the D3 model, D3's engine only renders graphics: interactivity is left the user. If a user wants to create a visualization that's interactive, she has to write JavaScript functions that take care of updating the underlying parameters. A radically different approach altogether was taken by \textbf{Vega} \citep{satyanarayan2015}. In Vega, all aspects of visualization including interactivity are specified declaratively, via a JSON-like specification object. As such, Vega carries a large number of reactive primitives. Similar to D3 and plotly, Vega also spawned its own higher-level libraries in \textbf{Vega-lite} \citep{satyanarayan2016}, and \textbf{Altair} \citep{vanderplas2018}. A final popular interactive data visualization library in JavaScript is \textbf{Highcharts} \citep{highcharts2023}. Similar to Vega-lite, Highcharts is a high-level declarative framework in which plots are created based on a JSON-like specification object. 
+The very early systems such as \textbf{Prefuse} in 2005 \citep{heer2005} and \textbf{Flare} in 2008 \citep{flare2020} relied on plugins (Java and Adobe Flash Player, respectively). However, in the early 2010's, several true Web-native JavaScript-based interactive data visualization systems emerged. The most prominent among these is \textbf{D3}.js \citep{bostock2011}. D3 is a broad and general framework for manipulating HTML documents using data and displaying it with visualizations. It is in popular use still to this day and has spawned a number of specialized, higher-level data visualization libraries that abstract away the details and provide an interface to commonly used statistical plots, such as the also very prominent \textbf{plotly}.js \citep{plotly2022}. Importantly, in the D3 model, D3's engine only renders graphics: interactivity is left the user. If a user wants to create a visualization that's interactive, she has to write JavaScript functions that take care of updating the underlying parameters. A radically different approach altogether was taken by \textbf{Vega} \citep{satyanarayan2015}. In Vega, all aspects of a visualization including interactivity are specified declaratively, as a Plain Old JavaScript Object (POJO). As such, Vega carries a large number of reactive primitives. Similar to D3 and plotly, Vega also spawned its own higher-level libraries in \textbf{Vega-lite} \citep{satyanarayan2016}, and \textbf{Altair} \citep{vanderplas2018}. A final popular interactive data visualization library in JavaScript is \textbf{Highcharts} \citep{highcharts2023}. Similar to Vega-lite, Highcharts is a high-level declarative framework in which plots are created based on a POJO specification object. 
+
+\subsubsection{Common Features of Web-based Systems}
 
 These contemporary web-based interactive data visualization systems offer a great deal of expressiveness, however, it does seem to come at a cost. Specifically, the low-level frameworks like D3 and Vega allow the users to create almost arbitrarily complex interactive figures, and even the higher-level frameworks like plotly, Vega-lite, Altair, and Highcharts still offer a great deal of customizability. Yet, a lot of code and programmer time is required to create complex interactive figures, even in these higher-level frameworks. As a result, most examples that show up on the web or on the libraries' own showcase pages typically feature only shallow interactivity within a single plot - such as zooming, panning, and pop-up labels - and examples of more complex multi-plot interaction such as linked brushing or cross-filtering are far less common. Further, the coherence of interactivity is left to the user: there is nothing stopping them from creating figures with meaningless interactive features. As such, it is hard to call the frameworks like Vega-lite, Altair, and plotly true mid-level systems, the way that ggplot2 can be called a mid-level system for static graphics.  
 
@@ -180,13 +198,72 @@ To re-state the common thread from the previous sections, over the last 30 years
 
 The difference between the two branches represents a fundamental tension between specialization and generality. Specialized systems are easy to use but hard to extend; generic systems are extensible by definition but require time and effort to use effectively.  
 
-\subsection{A Very Brief and Inadequate Introduction to Category Theory}
+\subsection{The Problem of Statistical Summaries}
+
+Every data visualization has at least one graphical primitive or geometric object that is used to represent some statistical summary of the data. This is true for both static and interactive visualizations. For example, the position of a point on a scatterplot represents the values of the variables on the x- and y-axes. Typically, the statistical summary used in a scatterplot is identity, meaning that the x- and y-position of the point represents the raw values of those variables. As another example, the height of a bar in a histogram conventionally represents the number of cases within a binned range of the x-axis variable. 
+
+In static data visualizations, we are free to compute any kind of statistical summary we like. However, this is not the case for interactive visualizations, which are subject to unique constraints and challenges.
+
+\subsubsection{Computational Cost}
+
+First of, there is the problem of computing resources. In static visualizations, we compute the summary only once, before we render the plot. In interactive visualizations, we may need to recompute the statistical summaries in response to the user's input. For example, if the width of the histogram bins changes, we need to recompute the number of cases within each bin. This incurs an additional computational cost. To clarify, the problem only arises when the interaction needs to refer back to the original data (i.e. when it is linked, querying, or parametric type of interaction, as described in Section \ref{sec:whatcounts}); no extra cost is incurred by e.g. interactively changing the opacity of graphical primitives, irrespective of the data. However, for more complex types of interaction, the necessity to recompute summaries can create a computational bottleneck. If the statistical summary is too computationally expensive, the volume of data is too high, or if the user's input can change too rapidly, it may not be possible to render the interaction smoothly enough.  
+
+\subsubsection{Visual and Computational Coherency}
+
+Perhaps more importantly, different types of interaction also place a limit on what summaries will be computationally and visually coherent. For example, suppose we have an interactive visualization that consists of a linked barplot and a scatterplot. Further, let's suppose that the barplot displays the means of some continuous variable, within the levels of the variable on the x-axis (this type of plot is also sometimes called "dynamite plot", when error bars are shown). We want the user to be able to perform linked brushing on the two plots in a reciprocal way - clicking-and-dragging to select points in the scatterplot should highlight parts of the corresponding bar or bars, and vice versa, selecting a bar should highglight the corresponding points.
+
+We immediately run into several problems. First of all, how do we draw an empty selection? In a barplot of sums or counts, 0 is a meaningful default value, since the sum or count of a set with no elements is zero. However, the mean of an empty set is not defined. We could simply not draw the bar, but this will decohere the statistical summary from the visual representation: the absence of a bar may signal that either no cases are selected and the mean is undefined, or that there are selected cases and their mean is equal to the lower y-axis limit. 
+
+Second, if there are multiple selections present within a single x-axis variable level, how do we draw them? In a sum or count bar, we can stack selected groups on top of each other, and the total height of the stacked bar is equal to the sum of the heights of the sub-bars. This is not the case for mean. The mean of the group means does not have to equal the grand mean, and there is no idiosyncratic way of visually combining multiple means together. We could draw the means side-by-side as separate bars (a technique called "dodging" in \texttt{ggplot2}), however, this complicates the two-way reciprocal nature of the linked brushing - the user can no longer simply select the single unambiguous stacked bar, but instead has to learn by experience whether they can select one of the dodged group bars individually or whether they have to select all bars jointly, or some combination of both. 
+
+Finally, and thirdly, when computing the mean, we have to keep track of two quantities: running sum and running count. If we wanted to combine two means, we would need to have access to both, not just the computed values. In contrast, for sum and count we need to keep track of one value only and the values can be combined without reference to anything else. This is not a big problem with mean and the computation can still be easily parallelized, but other types of summaries may be more tricky.
+
+\subsubsection{Need for Structure}
+
+Overall, the picture that emerges is that, when it comes to interactive data visualization, some types of statistical summaries are better than others. Specifically, when reciprocal, two-way linked brushing is desired, not every kind of statistical summary will do. It is important to map out what types of constraints should statistical summaries meet in order to "work" and lead to visually and computationally coherent visualizations. Only by imposing some kind of structure can we hope to lay the foundations for a true mid-level interactive data visualization system. 
+
+
+\subsection{Few Relevant Bits of (Applied) Category Theory}
+
+Category theory is a branch of mathematics concerned with the study of universal structures and relations. It was developed as a way of unifying historically distinct areas of math such as abstract algebra, topology, and linear algebra. More importantly, at the present time, it is also becoming increasingly used in applied fields, especially computer science and functional programming. Even a very basic treatment would be outside the scope of the present proposal, however, few relevant pieces will be presented in a greatly simplified way, introducing examples from programming when relevant. The treatment follows mainly from \cite{fong2019} and \cite{Milewski2018}, as well as \cite{leinster2014}.
+
+\subsubsection{Functions}
+
+Functions are the most fundamental building block of category theory (as well as many other areas of mathematics). They are also known, in their more general form, as "morphisms" or "mappings". A function can be described in the following way: given two sets, the set of sources $S$ and the set of targets $T$, a function is a subset $F \subseteq S \times T$ containing all source-target pairs $(s, t)$, such that for all $s \in S$ there exists a unique a $t \in T$. The sets $S$ and $T$ are also known as the domain and codomain, respectively. In programming terms, we should be hypothetically able to implement any function as a lookup table (in practice, this is only feasible when the number of possible arguments is finite and small - but then it can be handy technique, called \textit{memoization}).  
+
+A function which covers all of its codomain, i.e. one for which, for all $t \in T$, there exists an $s \in S$ such that $f(s) = t$ is called \textit{surjective} or \textit{onto}. A function which has a unique element in the codomain for every element in the domain, i.e. one for which for all $s_1, s_2 \in S$ and $t \in T$, if $f(s_1) = t$ and $f(s_2) = t$, $s_1 = s_2$, is called \textit{injective} or \textit{one-to-one}. Also, for any given subset $T_i \subseteq T$, we can define \textit{pre-image} as the subset of $S$ that maps into $T_i$: $f^{-1}(T_i) = \{ s \in S : f(s) \in T_i \}$. Finally, functions can be composed: if we have two functions $f: X \to Y$ and $g: Y \to Z$, we can combine them into a new function $h = g \circ f$ such that $h: X \to Z$, i.e. $h(x) = g(f(x))$. 
+
+\subsubsection{Partitions and preorders}
+
+Two very simple structures used in category theory (and elsewhere) are partitions and preorders. Firstly, for a set $A$, a \textit{partition} of $A$ consists of a set of part labels $P$, such that, for all $p \in P$, there is a non-empty subset $A_p \subseteq A$ and:
+
+$$A = \bigcup_{p \in P} A_p \qquad \text{and} \qquad \text{if } p \neq q, A_p \cap A_q = \varnothing \qquad (\forall p, q \in P)$$
+
+I.e. the parts jointly cover the entirety of $A$ and their elements do not overlap. Partitions can also be conceptualized as surjective functions: given the two sets $A$ and $P$ described above, a surjective function $f : A \to P$ allocates every element in $A$ a part label in $P$, with the pre-images $f^{-1}(p) \subseteq A$ playing the role of the parts.  
+
+Secondly, a \textit{preorder} consists of a set $X$ and a binary relation on $X$, often denoted $\leq$, such that:
+
+\begin{enumerate}
+\item $x \leq x$ (reflexivity)
+\item if $x \leq y$ and $y \leq z$ then $x \leq z$ (transitivity)
+\end{enumerate}
+
+Further, if we have one additional property:
+
+\begin{enumerate}
+\setcounter{enumi}{2}
+\item If $x \leq y$ and $y \leq x$, then $x = y$ (anti-symmetry)
+\end{enumerate}
+
+Then we can speak of a partially ordered set, or \textit{poset}. Examples of posets include the set of booleans $\mathbb{B} = \{ \text{True, False} \}$, natural numbers $\mathbb{N}$, reals $\mathbb{R}$, etc... 
 
 % ----------------------------------------------------------------------
 \section{So What's New?}
 \label{sec:whatsnew}
 
 This project seeks to develop a theory for a mid-level interactive data exploration system and fill its unoccupied niche within the interactive data visualization sphere. To accomplish this, the following goals will be actioned:  
+
+
 
 \begin{enumerate}
 
@@ -224,9 +301,6 @@ Develop a theoretical foundation for the system
 \item Present the system at an R developer or data visualization conference such as useR! or IEEE VIS
 
 \end{enumerate}
-
-
-
 
 
 % ----------------------------------------------------------------------
