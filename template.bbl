@@ -1,4 +1,4 @@
-\begin{thebibliography}{49}
+\begin{thebibliography}{50}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \expandafter\ifx\csname url\endcsname\relax
   \def\url#1{\texttt{#1}}\fi
@@ -28,6 +28,9 @@ Bertin, J., 1967. {Sémiologie Graphique: Les diagrammes, les réseaux, les
 \bibitem[{Bostock et~al.(2011)Bostock, Ogievetsky, and Heer}]{bostock2011}
 Bostock, M., Ogievetsky, V., Heer, J., 2011. D$^3$ data-driven documents. IEEE
   transactions on visualization and computer graphics 17~(12), 2301--2309.
+
+\bibitem[{Braithwaite(2019)}]{braithwaite2019}
+Braithwaite, R., 2019. Javascript Allongé. Leanpub.
 
 \bibitem[{Brodbeck et~al.(2009)Brodbeck, Mazza, and Lalanne}]{brodbeck2009}
 Brodbeck, D., Mazza, R., Lalanne, D., 2009. {Interactive Visualization - A

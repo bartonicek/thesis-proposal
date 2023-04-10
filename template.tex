@@ -12,6 +12,7 @@
  \usepackage{natbib}    % For BibTeX
  \usepackage{graphicx}  % To import .pdf files
 %\usepackage{times}
+ \usepackage{float}
  \usepackage{amsfonts}
  \usepackage{amsmath}
  \usepackage{amssymb}
@@ -202,46 +203,71 @@ The difference between the two branches represents a fundamental tension between
 
 Every data visualization has at least one graphical primitive or geometric object that is used to represent some statistical summary of the data. This is true for both static and interactive visualizations. For example, the position of a point on a scatterplot represents the values of the variables on the x- and y-axes. Typically, the statistical summary used in a scatterplot is identity, meaning that the x- and y-position of the point represents the raw values of those variables. As another example, the height of a bar in a histogram conventionally represents the number of cases within a binned range of the x-axis variable. 
 
-In static data visualizations, we are free to compute any kind of statistical summary we like. However, this is not the case for interactive visualizations, which are subject to unique constraints and challenges.
+In static data visualizations, we are free to compute any kind of statistical summary we like. However, this does not translate to interactive visualizations. Instead, interactive visualizations are subject to a unique set of constraints and challenges.
 
 \subsubsection{Computational Cost}
 
-First of, there is the problem of computing resources. In static visualizations, we compute the summary only once, before we render the plot. In interactive visualizations, we may need to recompute the statistical summaries in response to the user's input. For example, if the width of the histogram bins changes, we need to recompute the number of cases within each bin. This incurs an additional computational cost. To clarify, the problem only arises when the interaction needs to refer back to the original data (i.e. when it is linked, querying, or parametric type of interaction, as described in Section \ref{sec:whatcounts}); no extra cost is incurred by e.g. interactively changing the opacity of graphical primitives, irrespective of the data. However, for more complex types of interaction, the necessity to recompute summaries can create a computational bottleneck. If the statistical summary is too computationally expensive, the volume of data is too high, or if the user's input can change too rapidly, it may not be possible to render the interaction smoothly enough.  
+First of, there is the problem of computing resources. In static visualizations, we only need to compute any summary once, before we render the plot. However, this may not the case in interactive visualizations. Specifically, if the the summaries can be affected by the user's input, we can no longer just "fire-and-forget" but instead our system needs to be able to be able to recompute the summaries reactively, on-the-fly. For example, if the width of the bins in an interactive histogram changes, we need to recompute the number of cases within each bin. This incurs an additional computational cost. If the statistical summary is too computationally expensive, the volume of data is too high, or if the user's input changes too rapidly, it may not be possible to render the interaction smoothly enough. To clarify, this problem only arises when the interaction needs to refer back to the original data (i.e. when the interaction is linked, querying, or parametric, as described in Section \ref{sec:whatcounts}); no extra cost is incurred by e.g. interactively changing the opacity of graphical primitives, irrespective of the data. However, for the more complex types of interaction, the necessity to recompute summaries reactively can create computational bottlenecks.   
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=70mm]{./figure03.pdf}
+\caption{Reactive computation cascades}
+\label{fig:reactivecascade}
+\end{figure}
+
+Importantly, these reactive computations can cascade and form hierarchies. Using the example of the interactive histogram above, if the histogram also responds to linked brushing, we have reactivity occuring on two different levels, as shown in Figure \ref{fig:reactivecascade}. Firstly, when linked brushing occurs, we only need to recompute the number of cases within each bin belonging to the selection. However, if the width of the bins changes, we need to recompute both the number of cases within each bin belonging to the selection as well as the number of cases within the original, unselected bins.    
 
 \subsubsection{Visual and Computational Coherency}
 
 Perhaps more importantly, different types of interaction also place a limit on what summaries will be computationally and visually coherent. For example, suppose we have an interactive visualization that consists of a linked barplot and a scatterplot. Further, let's suppose that the barplot displays the means of some continuous variable, within the levels of the variable on the x-axis (this type of plot is also sometimes called "dynamite plot", when error bars are shown). We want the user to be able to perform linked brushing on the two plots in a reciprocal way - clicking-and-dragging to select points in the scatterplot should highlight parts of the corresponding bar or bars, and vice versa, selecting a bar should highglight the corresponding points.
 
-We immediately run into several problems. First of all, how do we draw an empty selection? In a barplot of sums or counts, 0 is a meaningful default value, since the sum or count of a set with no elements is zero. However, the mean of an empty set is not defined. We could simply not draw the bar, but this will decohere the statistical summary from the visual representation: the absence of a bar may signal that either no cases are selected and the mean is undefined, or that there are selected cases and their mean is equal to the lower y-axis limit. 
+We immediately run into several problems. The first is shown in Figure \ref{fig:empty}: how do we draw an empty selection? In a barplot of sums or counts, 0 is a meaningful default value, since the sum or count of a set with no elements is zero. However, the mean of an empty set is not defined. We could simply not draw the bar, but this will decohere the statistical summary from the visual representation: the absence of a bar may signal that either no cases are selected and the mean is undefined, or that there are selected cases and their mean is equal to the lower y-axis limit.
 
-Second, if there are multiple selections present within a single x-axis variable level, how do we draw them? In a sum or count bar, we can stack selected groups on top of each other, and the total height of the stacked bar is equal to the sum of the heights of the sub-bars. This is not the case for mean. The mean of the group means does not have to equal the grand mean, and there is no idiosyncratic way of visually combining multiple means together. We could draw the means side-by-side as separate bars (a technique called "dodging" in \texttt{ggplot2}), however, this complicates the two-way reciprocal nature of the linked brushing - the user can no longer simply select the single unambiguous stacked bar, but instead has to learn by experience whether they can select one of the dodged group bars individually or whether they have to select all bars jointly, or some combination of both. 
+\begin{figure}[H]
+\centering
+\caption{Sum/count of empty selection is zero but mean is undefined}
+\label{fig:empty}
+\end{figure}
+
+Second, if there are multiple selections present within a single x-axis variable level, how do we draw them? In a sum or count bar, we can stack selected groups on top of each other, and the total height of the stacked bar is equal to the sum of the heights of the sub-bars. This is not the case for mean. The mean of the group means does not have to equal the grand mean, and there is no idiosyncratic way of visually combining multiple means together. We could draw the means side-by-side as separate bars (a technique called "dodging" in \texttt{ggplot2}), however, this complicates the two-way reciprocal nature of the linked brushing - the user can no longer simply select the single unambiguous stacked bar, but instead has to learn by experience whether they can select one of the dodged group bars individually or whether they have to select all bars jointly, or some combination of both.
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=70mm]{./figure02.pdf}
+\caption{Sums/counts can be stacked but means cannot}
+\label{fig:empty}
+\end{figure}
 
 Finally, and thirdly, when computing the mean, we have to keep track of two quantities: running sum and running count. If we wanted to combine two means, we would need to have access to both, not just the computed values. In contrast, for sum and count we need to keep track of one value only and the values can be combined without reference to anything else. This is not a big problem with mean and the computation can still be easily parallelized, but other types of summaries may be more tricky.
 
 \subsubsection{Need for Structure}
 
-Overall, the picture that emerges is that, when it comes to interactive data visualization, some types of statistical summaries are better than others. Specifically, when reciprocal, two-way linked brushing is desired, not every kind of statistical summary will do. It is important to map out what types of constraints should statistical summaries meet in order to "work" and lead to visually and computationally coherent visualizations. Only by imposing some kind of structure can we hope to lay the foundations for a true mid-level interactive data visualization system. 
+The picture that emerges is that, when it comes to interactive data visualization, some types of statistical summaries are better than others. Specifically, when more complex types of interactions are desired, such as reciprocal two-way linked brushing, not every kind of statistical summary will do. It is important to map out what types of constraints should statistical summaries meet in order to "work" and lead to visually and computationally coherent visualizations. Only by imposing some kind of structure can we lay the foundations for a true mid-level interactive data visualization system. 
 
 
 \subsection{Few Relevant Bits of (Applied) Category Theory}
 
-Category theory is a branch of mathematics concerned with the study of universal structures and relations. It was developed as a way of unifying historically distinct areas of math such as abstract algebra, topology, and linear algebra. More importantly, at the present time, it is also becoming increasingly used in applied fields, especially computer science and functional programming. Even a very basic treatment would be outside the scope of the present proposal, however, few relevant pieces will be presented in a greatly simplified way, introducing examples from programming when relevant. The treatment follows mainly from \cite{fong2019} and \cite{Milewski2018}, as well as \cite{leinster2014}.
+Category theory is a branch of mathematics concerned with the study of universal structures and relations. It was developed as a way of unifying historically distinct areas of math such as abstract algebra, topology, and linear algebra. At the present time, it is also becoming increasingly applied in less theoretical fields, especially computer science and functional programming. Even a very basic complete treatment would be far outside the scope of the present proposal, however, few relevant pieces will be presented in a greatly simplified way, introducing examples from programming when relevant. The treatment here follows mainly from \cite{fong2019} and \cite{Milewski2018}, as well as \cite{leinster2014}.
 
 \subsubsection{Functions}
+\label{sec:functions}
 
-Functions are the most fundamental building block of category theory (as well as many other areas of mathematics). They are also known, in their more general form, as "morphisms" or "mappings". A function can be described in the following way: given two sets, the set of sources $S$ and the set of targets $T$, a function is a subset $F \subseteq S \times T$ containing all source-target pairs $(s, t)$, such that for all $s \in S$ there exists a unique a $t \in T$. The sets $S$ and $T$ are also known as the domain and codomain, respectively. In programming terms, we should be hypothetically able to implement any function as a lookup table (in practice, this is only feasible when the number of possible arguments is finite and small - but then it can be handy technique, called \textit{memoization}).  
+Functions are the most fundamental building block of category theory (as well as many other areas of mathematics). In their more general form, they are also known as "morphisms" or "mappings". A function can be described in the following way: given two sets, the set of sources $S$ and the set of targets $T$, a function is a subset $F \subseteq S \times T$ containing all source-target pairs $(s, t)$, such that for all $s \in S$ there exists a unique a $t \in T$. The sets $S$ and $T$ are also known as the domain and codomain, respectively. In programming terms, we should be hypothetically able to implement any function as a lookup table (in practice, this is only feasible when the number of possible arguments is finite and small - but then it can be handy a technique, called \textit{memoization}).  
 
 A function which covers all of its codomain, i.e. one for which, for all $t \in T$, there exists an $s \in S$ such that $f(s) = t$ is called \textit{surjective} or \textit{onto}. A function which has a unique element in the codomain for every element in the domain, i.e. one for which for all $s_1, s_2 \in S$ and $t \in T$, if $f(s_1) = t$ and $f(s_2) = t$, $s_1 = s_2$, is called \textit{injective} or \textit{one-to-one}. Also, for any given subset $T_i \subseteq T$, we can define \textit{pre-image} as the subset of $S$ that maps into $T_i$: $f^{-1}(T_i) = \{ s \in S : f(s) \in T_i \}$. Finally, functions can be composed: if we have two functions $f: X \to Y$ and $g: Y \to Z$, we can combine them into a new function $h = g \circ f$ such that $h: X \to Z$, i.e. $h(x) = g(f(x))$. 
 
-\subsubsection{Partitions and preorders}
+\subsubsection{Partitions}
 
-Two very simple structures used in category theory (and elsewhere) are partitions and preorders. Firstly, for a set $A$, a \textit{partition} of $A$ consists of a set of part labels $P$, such that, for all $p \in P$, there is a non-empty subset $A_p \subseteq A$ and:
+We can do many things with functions, and one fundamental operation we can do with them is to form \textit{partitions}. Specifically, given a set $A$ and a set of part labels $P$, we can use a surjective function $f: A \to P$ to assign every element in $A$ a part label in $P$. Further, if we then take one of the part labels $p \in P$ and pull it back through $f$ to its pre-image $f^{-1}(p) \subseteq A$, we will then recover the corresponding part $A_p \subseteq A$. We can use this to define partitions in another way, without reference to $f$: a partition of $A$ consists of a set of part labels $P$, such that, for all $p \in P$, there is a non-empty subset $A_p \subseteq A$ and:
 
 $$A = \bigcup_{p \in P} A_p \qquad \text{and} \qquad \text{if } p \neq q, A_p \cap A_q = \varnothing \qquad (\forall p, q \in P)$$
 
-I.e. the parts jointly cover the entirety of $A$ and their elements do not overlap. Partitions can also be conceptualized as surjective functions: given the two sets $A$ and $P$ described above, a surjective function $f : A \to P$ allocates every element in $A$ a part label in $P$, with the pre-images $f^{-1}(p) \subseteq A$ playing the role of the parts.  
+I.e. the parts jointly cover the entirety of $A$ and there is no overlap between their elements.
 
-Secondly, a \textit{preorder} consists of a set $X$ and a binary relation on $X$, often denoted $\leq$, such that:
+\subsubsection{Preorders}
+
+Another class of fundamental structures in category theory are preordered sets or \textit{preorders}. A preorder consists of a set $X$ and a binary relation on $X$, often denoted $\leq$, such that:
 
 \begin{enumerate}
 \item $x \leq x$ (reflexivity)
@@ -255,7 +281,78 @@ Further, if we have one additional property:
 \item If $x \leq y$ and $y \leq x$, then $x = y$ (anti-symmetry)
 \end{enumerate}
 
-Then we can speak of a partially ordered set, or \textit{poset}. Examples of posets include the set of booleans $\mathbb{B} = \{ \text{True, False} \}$, natural numbers $\mathbb{N}$, reals $\mathbb{R}$, etc... 
+Then we can speak of a partially ordered set, or \textit{poset}. Finally, with one more property:
+
+\begin{enumerate}
+\setcounter{enumi}{3}
+\item Either $x \leq y$ or $y \leq x$ (comparability)
+\end{enumerate}
+
+We can speak of a \textit{total order}. Examples of total orders (which are also by definition posets and preorders) include the set of natural numbers $\mathbb{N}$, reals $\mathbb{R}$, booleans $\mathbb{B} = \{ \text{True, False} \}$, etc... An example of a poset which is not a total order is a phylogenetic tree: a species \textit{Homo sapiens} can be thought of as being in a subordinate relationship ($\leq$) to the genus \textit{Homo} and the great ape family, but in no comparable relationship to the species \textit{Canis familiaris}.
+
+\subsubsection{Monoids}
+
+\textit{Monoids} are a simple yet surprisingly useful structure in category theory. Specifically, a monoid is a tuple $(M, e, \otimes)$ consisting of:
+
+\begin{enumerate}
+\item An object (set) $M$
+\item A "neutral" or "empty" element $e \in M$ called the \textit{monoidal unit}
+\item A binary function $\otimes: M \times M \to M$ called the \textit{monoidal product}
+\end{enumerate}
+
+Such that, for all $m, m_1, m_2, m_3 \in M$: 
+
+\begin{enumerate}
+\renewcommand{\theenumi}{\alph{enumi}}
+\item $e \otimes m = m \otimes e = m$ (unitality)
+\item $(m_1 \otimes m_2) \otimes m_3 = m_1 \otimes (m_2 \otimes m_3) = m_1 \otimes m_2 \otimes m_3$ (associativity)
+\end{enumerate}
+
+In plain English, a monoid encodes the idea that \textit{the whole is exactly the sum of its parts} (with "sum" being able to be replaced by any function/operation that fulfills the properties above). Examples of monoids include addition of natural numbers $(\mathbb{N}, 0, +)$, multiplication of reals $(\mathbb{R}, 1, *)$, and matrix multiplication $(\mathbf{Matrix}, \mathbf{I}, \cdot)$ (with $\mathbf{I}$ being the identity matrix and the $\cdot$ infix operator being omitted by convention). As counterexample, an operation on real/natural numbers which does not uphold the monoid contract is exponentiation - associativity does not hold since $x^{(y^z)} \neq (x^y)^z$. Importantly, the set $M$ does not need to involve any numerical quantities: for example, string concatenation (e.g. the \texttt{paste()} function in R) is also a perfectly valid monoidal product, with corresponding $M$ being the set of all strings $\textbf{String}$ and the empty unit being an empty string "".
+
+Monoids can be constrained by imposing additional properties. For example, with:
+
+\begin{enumerate}
+\renewcommand{\theenumi}{\alph{enumi}}
+\setcounter{enumi}{2}
+\item $x \otimes y = y \otimes x$ (commutativity/symmetry)
+\end{enumerate}
+
+We can make it so that the direction of applying the monoidal product does not matter (which would still admit regular addition and multiplication, but not matrix multiplication and string concatenation). Additionally, if $M$ is a preorder, we can impose an additional constraint:
+
+\begin{enumerate}
+\renewcommand{\theenumi}{\alph{enumi}}
+\setcounter{enumi}{3}
+\item If $x_1 \leq x_2$ and $y_1 \leq y_2$, $x_1 \otimes y_1 \leq x_2 \otimes y_2$ (monotonicity)
+\end{enumerate}
+
+If all four properties a), b), c), and d) hold, we speak of a \textit{symmetric monoidal preorder}. 
+
+In programming, monoids are most typically encountered in the context of arrays, whereby the elements of an array can be iteratively absorbed into a single value, through functions/methods called conventionally \texttt{reduce}, \texttt{fold}, or \texttt{accumulate}. Examples include the \texttt{Reduce()} function in R, \texttt{Array.reduce()} method in JavaScript, \texttt{fold} function in Haskell. Typically, only the monoidal unit and product are supplied to the function call; the set $M$ is either inferred implicitly through the type system (in statically typed languages) or is omitted altogether (in dynamically typed): e.g. in R, we may do \texttt{Reduce(sum, 1:4, 0)} or \texttt{Reduce(sum, list(c(1, 2), c(3, 4), 0)}, with the same result. Importantly, while \texttt{reduce/fold} are most often used with arrays, their generic forms are polymorphic and can be applied to arbitrary datastructures that implement the interface e.g. trees \citep{braithwaite2019}. One handy, "free" fact about monoidal products is that they can be readily parallelized - since the result of applying the operation one the whole is the same as the result applying it first within and then across parts, we are free to split the datastructure into chunks and compute the results on separate cores/machines. 
+
+\subsubsection{Categories}
+
+A monoid is actually a special case of a much more general concept called \textit{category}. A category $\mathcal{C}$ consists of:
+
+\begin{enumerate}
+\item A collection of elements $\text{Ob}(\mathcal{C})$ called the \textit{objects} of $\mathcal{C}$
+\item For every pair of objects $a, b \in \text{Ob}(\mathcal{C})$, a set $\mathcal{C}(a, b)$ of \textit{morphisms} from $a$ to $b$ ($f \in \mathcal{C}(a, b)$ can also be denoted $f: a \to b$)
+\item For every object $a$, one morphism $\text{id}_a \in \mathcal{C}(a, a)$ called the \textit{identity morphism}
+\item For every three objects $a, b, c$ and every two morphisms $f \in \mathcal{C}(a, b)$ and $g \in \mathcal{C}(b, c)$, a \textit{composite morphism} $h \in \mathcal{C}(a,b) = g \circ f $ 
+\end{enumerate}
+
+Such that:
+
+\begin{enumerate}
+\renewcommand{\theenumi}{\alph{enumi}}
+\item For any morphism $f: a \to b$, $f \circ id_a = f = id_b \circ f$ (unitality)
+\item For any four objects $c_1, c_2, c_3, c_4 \in \text{Ob}(\mathcal{C})$ and morphisms $f: c_1 \to c_2$, $g: c_2 \to c_3$, and $h: c_3 \to c_4$, $h \circ (g \circ f) = (g \circ h) \circ f = g \circ h \circ f$ (associativity)
+\end{enumerate}
+
+
+There are few important things to note. First off, $\text{Ob}(\mathcal{C})$ is described as a \textit{collection} (not set) of objects because it does not necessarily have to form a set. On the contrary, morphisms between any two given objects always form a set. As was mentioned in Section \ref{sec:functions}, morphisms can be thought of as generalizations of functions: they take one object to another, within the same category, and obey the usual rules for functions composition (i.e. associativity). Additionally, the identity morphism guarantees there is always at least one way to start and arrive at the same object, and its composition with other morphisms has no effect.
+
+
 
 % ----------------------------------------------------------------------
 \section{So What's New?}
