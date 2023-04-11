@@ -212,7 +212,7 @@ First of, there is the problem of computing resources. In static visualizations,
 \begin{figure}[H]
 \centering
 \includegraphics[height=70mm]{./figure03.pdf}
-\caption{Reactive computation cascades}
+\caption{Reactive computations cascade}
 \label{fig:reactivecascade}
 \end{figure}
 
@@ -226,7 +226,8 @@ We immediately run into several problems. The first is shown in Figure \ref{fig:
 
 \begin{figure}[H]
 \centering
-\caption{Sum/count of empty selection is zero but mean is undefined}
+\includegraphics[height=70mm]{./figure01.pdf}
+\caption{Sum/count of empty selection is zero but the mean of an empty selection is undefined}
 \label{fig:empty}
 \end{figure}
 
@@ -248,7 +249,7 @@ The picture that emerges is that, when it comes to interactive data visualizatio
 
 \subsection{Few Relevant Bits of (Applied) Category Theory}
 
-Category theory is a branch of mathematics concerned with the study of universal structures and relations. It was developed as a way of unifying historically distinct areas of math such as abstract algebra, topology, and linear algebra. At the present time, it is also becoming increasingly applied in less theoretical fields, especially computer science and functional programming. Even a very basic complete treatment would be far outside the scope of the present proposal, however, few relevant pieces will be presented in a greatly simplified way, introducing examples from programming when relevant. The treatment here follows mainly from \cite{fong2019} and \cite{Milewski2018}, as well as \cite{leinster2014}.
+Category theory is a branch of mathematics concerned with the study of universal structures and relations. It was developed as a way of unifying historically distinct areas of math such as abstract algebra, topology, and linear algebra. At the present time, it is also gaining traction in more applied fields, especially computer science and functional programming. Even a very basic complete treatment would be far outside the scope of the present proposal, however, few relevant pieces will be presented in a greatly simplified way, introducing examples from programming when relevant. The treatment here follows mainly from \cite{fong2019} and \cite{Milewski2018}, as well as \cite{leinster2014}.
 
 \subsubsection{Functions}
 \label{sec:functions}
@@ -263,7 +264,7 @@ We can do many things with functions, and one fundamental operation we can do wi
 
 $$A = \bigcup_{p \in P} A_p \qquad \text{and} \qquad \text{if } p \neq q, A_p \cap A_q = \varnothing \qquad (\forall p, q \in P)$$
 
-I.e. the parts jointly cover the entirety of $A$ and there is no overlap between their elements.
+I.e. the parts jointly cover the entirety of $A$ and there is no overlap between their elements. Further, if we have two sets of part labels $P$ and $P'$, and if for every $p \in P$ there exists a $p' \in P'$ such that $A_p = A_{p'}$, the partitions are in some way fundamentally the same. The labels $p \in P$ and $p' \in P'$ may be superficially different, but the two structures encode the same information. This phenomenon is known as \textit{isomorphism}, and will be expounded on in more detail in Section \ref{sec:categories}.  
 
 \subsubsection{Preorders}
 
@@ -308,9 +309,16 @@ Such that, for all $m, m_1, m_2, m_3 \in M$:
 \item $(m_1 \otimes m_2) \otimes m_3 = m_1 \otimes (m_2 \otimes m_3) = m_1 \otimes m_2 \otimes m_3$ (associativity)
 \end{enumerate}
 
-In plain English, a monoid encodes the idea that \textit{the whole is exactly the sum of its parts} (with "sum" being able to be replaced by any function/operation that fulfills the properties above). Examples of monoids include addition of natural numbers $(\mathbb{N}, 0, +)$, multiplication of reals $(\mathbb{R}, 1, *)$, and matrix multiplication $(\mathbf{Matrix}, \mathbf{I}, \cdot)$ (with $\mathbf{I}$ being the identity matrix and the $\cdot$ infix operator being omitted by convention). As counterexample, an operation on real/natural numbers which does not uphold the monoid contract is exponentiation - associativity does not hold since $x^{(y^z)} \neq (x^y)^z$. Importantly, the set $M$ does not need to involve any numerical quantities: for example, string concatenation (e.g. the \texttt{paste()} function in R) is also a perfectly valid monoidal product, with corresponding $M$ being the set of all strings $\textbf{String}$ and the empty unit being an empty string "".
+In plain English, monoids encapsulate the idea that \textit{the whole is exactly the sum of its parts} (where "sum" can be any arbitrary function that fulfills the properties). Examples of monoids include addition of natural numbers $(\mathbb{N}, 0, +)$, multiplication of reals $(\mathbb{R}, 1, *)$, and matrix multiplication $(\mathbf{Matrix}, \mathbf{I}, \cdot)$, where $\mathbf{I}$ is the identity matrix and the $\cdot$ infix operator is typically omitted by convention. As counterexample, exponentiation is not a monoid, because because it is not associative ($x^{(y^z)} \neq (x^y)^z$). 
 
-Monoids can be constrained by imposing additional properties. For example, with:
+Another important aside is that the set $M$ does not need to involve any numerical quantities. For example, given any set $S$, the set union $(S, \varnothing, \cup)$ and set intersection $(S, S, \cap)$ are also monoids. String concatenation (e.g. the \texttt{paste()} function in R) is also a perfectly valid monoid: 
+
+\begin{itemize}
+\item \texttt{paste("hello", "") == paste("", "hello") == "hello"}
+\item \texttt{paste("hello", paste("world", "bye")) == paste(paste("hello", "world"), "bye")}
+\end{itemize}
+
+Monoids can be further specialized by imposing additional properties. For example, with:
 
 \begin{enumerate}
 \renewcommand{\theenumi}{\alph{enumi}}
@@ -318,7 +326,7 @@ Monoids can be constrained by imposing additional properties. For example, with:
 \item $x \otimes y = y \otimes x$ (commutativity/symmetry)
 \end{enumerate}
 
-We can make it so that the direction of applying the monoidal product does not matter (which would still admit regular addition and multiplication, but not matrix multiplication and string concatenation). Additionally, if $M$ is a preorder, we can impose an additional constraint:
+We can make it so that the direction of applying the monoidal product does not matter (which would still admit regular addition, multiplication, set union, and set intersection, but not matrix multiplication and string concatenation). Additionally, if $M$ is a preorder, we can impose an additional constraint:
 
 \begin{enumerate}
 \renewcommand{\theenumi}{\alph{enumi}}
@@ -328,17 +336,18 @@ We can make it so that the direction of applying the monoidal product does not m
 
 If all four properties a), b), c), and d) hold, we speak of a \textit{symmetric monoidal preorder}. 
 
-In programming, monoids are most typically encountered in the context of arrays, whereby the elements of an array can be iteratively absorbed into a single value, through functions/methods called conventionally \texttt{reduce}, \texttt{fold}, or \texttt{accumulate}. Examples include the \texttt{Reduce()} function in R, \texttt{Array.reduce()} method in JavaScript, \texttt{fold} function in Haskell. Typically, only the monoidal unit and product are supplied to the function call; the set $M$ is either inferred implicitly through the type system (in statically typed languages) or is omitted altogether (in dynamically typed): e.g. in R, we may do \texttt{Reduce(sum, 1:4, 0)} or \texttt{Reduce(sum, list(c(1, 2), c(3, 4), 0)}, with the same result. Importantly, while \texttt{reduce/fold} are most often used with arrays, their generic forms are polymorphic and can be applied to arbitrary datastructures that implement the interface e.g. trees \citep{braithwaite2019}. One handy, "free" fact about monoidal products is that they can be readily parallelized - since the result of applying the operation one the whole is the same as the result applying it first within and then across parts, we are free to split the datastructure into chunks and compute the results on separate cores/machines. 
+In programming, monoids are most typically encountered in the context of arrays, whereby the elements of an array can be iteratively absorbed into a single value, through functions/methods called conventionally \texttt{reduce}, \texttt{fold}, or \texttt{accumulate}. Examples include the \texttt{Reduce()} function in R, \texttt{Array.reduce()} method in JavaScript, \texttt{fold} function in Haskell. Importantly, while \texttt{reduce/fold} are most often used with arrays, their generic forms are polymorphic and can be applied to arbitrary datastructures that implement the interface e.g. trees \citep{braithwaite2019}. One handy, "free" fact about monoidal operations is that they can be readily parallelized - since the end-result of applying the operation recursively to parts is the same as applying it once to the whole, we are free to split the data across multiple clusters or machines.  
 
 \subsubsection{Categories}
+\label{sec:categories}
 
 A monoid is actually a special case of a much more general concept called \textit{category}. A category $\mathcal{C}$ consists of:
 
 \begin{enumerate}
 \item A collection of elements $\text{Ob}(\mathcal{C})$ called the \textit{objects} of $\mathcal{C}$
 \item For every pair of objects $a, b \in \text{Ob}(\mathcal{C})$, a set $\mathcal{C}(a, b)$ of \textit{morphisms} from $a$ to $b$ ($f \in \mathcal{C}(a, b)$ can also be denoted $f: a \to b$)
-\item For every object $a$, one morphism $\text{id}_a \in \mathcal{C}(a, a)$ called the \textit{identity morphism}
-\item For every three objects $a, b, c$ and every two morphisms $f \in \mathcal{C}(a, b)$ and $g \in \mathcal{C}(b, c)$, a \textit{composite morphism} $h \in \mathcal{C}(a,b) = g \circ f $ 
+\item For every object $a$, one morphism $\text{id}_a : a \to a$ called the \textit{identity morphism}
+\item For every three objects $a, b, c$ and every two morphisms $f : a \to b$ and $g : b \to c$, a \textit{composite morphism} $h : a \to c = g \circ f $ 
 \end{enumerate}
 
 Such that:
@@ -346,17 +355,20 @@ Such that:
 \begin{enumerate}
 \renewcommand{\theenumi}{\alph{enumi}}
 \item For any morphism $f: a \to b$, $f \circ id_a = f = id_b \circ f$ (unitality)
-\item For any four objects $c_1, c_2, c_3, c_4 \in \text{Ob}(\mathcal{C})$ and morphisms $f: c_1 \to c_2$, $g: c_2 \to c_3$, and $h: c_3 \to c_4$, $h \circ (g \circ f) = (g \circ h) \circ f = g \circ h \circ f$ (associativity)
+\item For any four objects $a_1, a_2, a_3, a_4 \in \text{Ob}(\mathcal{C})$ and morphisms $f: a_1 \to a_2$, $g: a_2 \to a_3$, and $h: a_3 \to a_4$, $h \circ (g \circ f) = (g \circ h) \circ f = g \circ h \circ f$ (associativity)
 \end{enumerate}
 
 
-There are few important things to note. First off, $\text{Ob}(\mathcal{C})$ is described as a \textit{collection} (not set) of objects because it does not necessarily have to form a set. On the contrary, morphisms between any two given objects always form a set. As was mentioned in Section \ref{sec:functions}, morphisms can be thought of as generalizations of functions: they take one object to another, within the same category, and obey the usual rules for functions composition (i.e. associativity). Additionally, the identity morphism guarantees there is always at least one way to start and arrive at the same object, and its composition with other morphisms has no effect.
+As was mentioned in Section \ref{sec:functions}, morphisms can be thought of as generalizations of functions: they take one object within a category to another object within the same category, and their composition is associative, just like with regular functions. However, unlike in regular functions, the objects in the category are left unspecified and do not have form elements of any set. The identity morphism guarantees there is always at least one way to start and arrive at the same object, and its composition with other morphisms has no effect.
 
+Returning to monoids, these can recast as a category with one object with a single non-identity morphism going from the object back to itself. As a concrete example, given the monoid $(\mathbb{N}, 0, +)$, we can represent this as a category with a single object $z$ and a morphism $f$ (and identity morphism $id_a$). The identity morphism will then play the role of the monoidal unit $e = id_a$, function composition will play the role of the monoidal product, and the number of times we compose the function will determine the element of the set: $\{0, 1, 2, \ldots \} = \{id_a, f, (f \circ f), (f \circ f \circ f), \ldots \}$. The associativity and unitality properties of monoids will be fulfilled as a result of the same properties being defined on categories.  
 
 
 % ----------------------------------------------------------------------
 \section{So What's New?}
 \label{sec:whatsnew}
+
+As was laid out in the previous sections, when compared to traditional static visualization, interactive data visualization presents an idiosyncratic set of challenges and considerations. Specifically, when drawing and interacting with statistical summaries of the data, the user needs to be aware whether the summaries present a coherent whole.
 
 This project seeks to develop a theory for a mid-level interactive data exploration system and fill its unoccupied niche within the interactive data visualization sphere. To accomplish this, the following goals will be actioned:  
 

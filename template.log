@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (preloaded format=pdflatex 2022.10.6)  10 APR 2023 13:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (preloaded format=pdflatex 2022.10.6)  12 APR 2023 10:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -173,81 +173,79 @@ File: ./figure03.pdf Graphic file (type pdf)
 Package pdftex.def Info: ./figure03.pdf  used on input line 214.
 (pdftex.def)             Requested size: 398.3596pt x 199.16928pt.
  [7 <./figure03.pdf>]
-<./figure02.pdf, id=35, 433.62pt x 216.81pt>
+<./figure01.pdf, id=35, 433.62pt x 216.81pt>
+File: ./figure01.pdf Graphic file (type pdf)
+<use ./figure01.pdf>
+Package pdftex.def Info: ./figure01.pdf  used on input line 229.
+(pdftex.def)             Requested size: 398.3596pt x 199.16928pt.
+<./figure02.pdf, id=36, 433.62pt x 216.81pt>
 File: ./figure02.pdf Graphic file (type pdf)
 <use ./figure02.pdf>
-Package pdftex.def Info: ./figure02.pdf  used on input line 237.
+Package pdftex.def Info: ./figure02.pdf  used on input line 238.
 (pdftex.def)             Requested size: 398.3596pt x 199.16928pt.
- [8 <./figure02.pdf>] [9] [10] [11] [12]
+ [8 <./figure01.pdf>] [9 <./figure02.pdf>] [10] [11] [12] [13]
 
-Package natbib Warning: Citation `bick:etal:2009' on page 13 undefined on input line 443.
-
-
-Package natbib Warning: Citation `scot:lee:wild:2007' on page 13 undefined on input line 447.
+Package natbib Warning: Citation `bick:etal:2009' on page 14 undefined on input line 455.
 
 
-Package natbib Warning: Citation `demp:lair:rubi:1977' on page 13 undefined on input line 450.
+Package natbib Warning: Citation `scot:lee:wild:2007' on page 14 undefined on input line 459.
 
 
-Package natbib Warning: Citation `cham:1998' on page 13 undefined on input line 455.
+Package natbib Warning: Citation `demp:lair:rubi:1977' on page 14 undefined on input line 462.
 
 
-Package natbib Warning: Citation `MR2526777' on page 13 undefined on input line 459.
+Package natbib Warning: Citation `cham:1998' on page 14 undefined on input line 467.
 
 
-Package natbib Warning: Citation `gowe:1966' on page 13 undefined on input line 462.
+Package natbib Warning: Citation `MR2526777' on page 14 undefined on input line 471.
 
 
-Package natbib Warning: Citation `murr:ihak:2000' on page 13 undefined on input line 466.
+Package natbib Warning: Citation `gowe:1966' on page 14 undefined on input line 474.
 
 
-Package natbib Warning: Citation `efro:2009' on page 13 undefined on input line 480.
+Package natbib Warning: Citation `murr:ihak:2000' on page 14 undefined on input line 478.
 
 
-Package natbib Warning: Citation `MR2415600' on page 13 undefined on input line 480.
+Package natbib Warning: Citation `efro:2009' on page 14 undefined on input line 492.
 
 
-Package natbib Warning: Citation `MR2508377' on page 13 undefined on input line 480.
+Package natbib Warning: Citation `MR2415600' on page 14 undefined on input line 492.
 
 
-Overfull \hbox (21.54214pt too wide) in paragraph at lines 508--532
+Package natbib Warning: Citation `MR2508377' on page 14 undefined on input line 492.
+
+
+Overfull \hbox (21.54214pt too wide) in paragraph at lines 520--544
  [][] 
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Overfull \hbox (127.93312pt too wide) in paragraph at lines 578--583
+[14]
+Overfull \hbox (127.93312pt too wide) in paragraph at lines 590--595
 []\OT1/cmr/m/n/12 Although op-tional, it is a good idea to try up-date a per-sonal web-page (ide-ally \OT1/cmss/m/n/12 www.stat.auckland.ac.nz/$\OMS/cmsy/m/n/12 ^^X$\OT1/cmss/m/n/12 myStudentName\OT1/cmr/m/n/12 )
  []
 
-[13]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[14] (./template.bbl [15] [16] [17])
+[15] (./template.bbl [16] [17] [18])
 
 Package natbib Warning: There were undefined citations.
 
-[18] (./template.aux)
+[19] (./template.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 2846 strings out of 480238
- 41667 string characters out of 5895836
- 339068 words of memory out of 5000000
- 20779 multiletter control sequences out of 15000+600000
+ 2855 strings out of 480238
+ 41848 string characters out of 5895836
+ 337081 words of memory out of 5000000
+ 20787 multiletter control sequences out of 15000+600000
  480534 words of font info for 70 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 55i,10n,62p,1775b,313s stack positions out of 5000i,500n,10000p,200000b,80000s
- </home/adam/.TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on template.pdf (18 pages, 266272 bytes).
+ 55i,10n,62p,1775b,317s stack positions out of 5000i,500n,10000p,200000b,80000s
+ </home/adam/.TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on template.pdf (19 pages, 282057 bytes).
 PDF statistics:
- 165 PDF objects out of 1000 (max. 8388607)
- 104 compressed objects within 2 object streams
+ 181 PDF objects out of 1000 (max. 8388607)
+ 114 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
