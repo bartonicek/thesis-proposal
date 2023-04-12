@@ -219,6 +219,7 @@ First of, there is the problem of computing resources. In static visualizations,
 Importantly, these reactive computations can cascade and form hierarchies. Using the example of the interactive histogram above, if the histogram also responds to linked brushing, we have reactivity occuring on two different levels, as shown in Figure \ref{fig:reactivecascade}. Firstly, when linked brushing occurs, we only need to recompute the number of cases within each bin belonging to the selection. However, if the width of the bins changes, we need to recompute both the number of cases within each bin belonging to the selection as well as the number of cases within the original, unselected bins.    
 
 \subsubsection{Visual and Computational Coherency}
+\label{sec:coherency}
 
 Perhaps more importantly, different types of interaction also place a limit on what summaries will be computationally and visually coherent. For example, suppose we have an interactive visualization that consists of a linked barplot and a scatterplot. Further, let's suppose that the barplot displays the means of some continuous variable, within the levels of the variable on the x-axis (this type of plot is also sometimes called "dynamite plot", when error bars are shown). We want the user to be able to perform linked brushing on the two plots in a reciprocal way - clicking-and-dragging to select points in the scatterplot should highlight parts of the corresponding bar or bars, and vice versa, selecting a bar should highglight the corresponding points.
 
@@ -368,46 +369,16 @@ Returning to monoids, these can recast as a category with one object with a sing
 \section{So What's New?}
 \label{sec:whatsnew}
 
-As was laid out in the previous sections, when compared to traditional static visualization, interactive data visualization presents an idiosyncratic set of challenges and considerations. Specifically, when drawing and interacting with statistical summaries of the data, the user needs to be aware whether the summaries present a coherent whole.
+As was laid out in the previous sections, when compared to traditional, static visualization, interactive data visualization presents an idiosyncratic set of challenges and considerations. Specifically, when drawing and interacting with statistical summaries of the data, the user needs to carefully navigate the landscape of these summaries, with only some producing visually and computationally coherent results. The goal of this project is to map out this landscape, and develop theory that will allow everyone to produce coherent interactive graphics. To this end, ideas and concepts from category theory will be used. As a first taste, returning to the problem of two-way linked brushing described in \ref{sec:coherency}, through the lense of category theory it is clear that the summaries that will produce coherent graphics need to fulfill the contract of a monoid, or more specifically \textit{symmetric monoidal structure on total order} (since the things we draw such as length, width, area are all in $\mathbb{R}^+$, and the direction of combining the selections should not matter)      
 
-This project seeks to develop a theory for a mid-level interactive data exploration system and fill its unoccupied niche within the interactive data visualization sphere. To accomplish this, the following goals will be actioned:  
-
-
+Further, the project also seeks to apply this theory and implement an interactive data visualization system which adheres to it. To this end, a prototype has already been developed in JavaScript and is available at: \texttt{https://github.com/bartonicek/plotscaper}. Going forward, the following broad goals will be pursued (see Section \ref{sec:goals} for a detailed breakdown):  
 
 \begin{enumerate}
 
-\item
-Map out boundaries and constraints that a mid-level interactive data visualization system should meet
-  \begin{enumerate}
-  \item Describe what contracts do graphical primitives and their underlying statistical summaries need to uphold in order to be interactable with in a coherent and predictable way 
-  \end{enumerate}
-
-\item
-Develop a theoretical foundation for the system
-  \begin{enumerate}
-  \item Use concepts and syntax of category theory to describe the necessary structure
-  \item Consider links back to implementation via functional programming
-  
-  \end{enumerate}
-
-\item Implement the system in JavaScript and publish as an \texttt{npm} package
-  \begin{enumerate}
-  \item Use plain ES2020 as much as possible, possibly incorporate a reactive programming library and functional programming utility library
-  \item Use the HTML \texttt{canvas} element as a drawing utility, explore using WebGL and other frameworks for performance
-  \item Provide a full documentation for any functions, classes, etc...
-  
-  \end{enumerate}
-
-\item Implement a high-level interface to the system in R and publish on \texttt{CRAN}
-  \begin{enumerate}
-  \item Provide a full documentation for all functions
-  \item Provide a package vignette
-  \item Pass all \texttt{CRAN} checks
-  \end{enumerate}
-  
-\item Publish an article in a international peer-reviewed journal such as the \textit{Journal of Statistical Software} or the \textit{R journal}
-
-\item Present the system at an R developer or data visualization conference such as useR! or IEEE VIS
+\item Map out the boundaries and constraints of statistical summaries as they relate to interactive data visualization systems 
+\item Develop theory for an implementation of a mid-level system
+\item Implement the system
+\item Communicate the findings
 
 \end{enumerate}
 
@@ -429,76 +400,42 @@ Development of open-source software is not very budget-intensive. The work relat
 
 % ----------------------------------------------------------------------
 \section{Objectives and Goals}
+\label{sec:goals}
 
 
-
-The objective(s) of this research project are to\ldots
-
-
-
-List \textit{specific} goals/tasks that
-will be undertaken as part of the proposed research.
-
-
+The objective(s) of this research project are to:
 
 \begin{enumerate}
 
 \item
-I wish to derive the first three moments of the Slash distribution.
-This will involve working out the characteristic function first.
+Map out boundaries and constraints that statistical summaries in a mid-level interactive data visualization system should meet
+  \begin{enumerate}
+  \item Describe what contracts do graphical primitives and underlying statistical summaries need to uphold in order to be interactable with in a coherent and predictable way
+  \item Use concepts from category theory to describe the necessary structures
+  \item Consider links to functional programming  
+  \end{enumerate}
 
+\item Implement the system in JavaScript (provisionally named \texttt{plotscape})
+  \begin{enumerate}
+  \item Use mainly plain ES2020, possibly incorporate basic utility libraries such as a reactive programming library and functional programming library
+  \item Use the HTML \texttt{canvas} element as a drawing utility, explore using WebGL and other frameworks for performance
+  \item Profile and test relevant parts of the code
+  \item Publish as an \texttt{npm} package
+  \item Provide a full documentation for any functions, classes, etc...
+  \end{enumerate}
 
-\begin{itemize}
+\item Implement a high-level interface to the system in R (provisionally named \texttt{plotscaper})
+  \begin{enumerate}
+  \item Provide a full documentation for all functions
+  \item Provide a package vignette
+  \item Pass all \texttt{CRAN} checks and publish on \texttt{CRAN} 
+  \end{enumerate}
+  
+\item Publish an article in a peer-reviewed academic journal such as the \textit{Journal of Statistical Software}
 
-\item[a.]
-Then work out the observed information matrix
-based on~\cite{bick:etal:2009}.
-
-\item[b.]
-Then work out the expected information matrix
-\citep{scot:lee:wild:2007}.
-
-\item[c.]
-Apply the EM algorithm \citep{demp:lair:rubi:1977} to estimate~$\lambda$.
-
-\item[d.]
-Write a \RR{} package to implement my method.
-It will be written in S4 and use object oriented methods
-\citep{cham:1998}.
-
-\item[e.]
-Apply the method to the radiation data set
-\citep{MR2526777}.
-
-\item[f.]
-Extend biplots \citep{gowe:1966} for my data.
-
-\item[g.]
-Release the package on CRAN
-(cf.~\cite{murr:ihak:2000}).
-
-\item[h.]
-Publish my results in at least two papers,
-earmarked for JASA and JRSS-B.
-Also an applications paper in Biometrics.
-See Section~\ref{sec:timeline}.
-
-\end{itemize}
-
-
-
-\item
-Solve the Fisher-Behrens problem
-\citep{efro:2009,MR2415600,MR2508377}.
-
+\item Present finding at conferences and user groups such as \textbf{useR!} and \textbf{IEEE VIS}
 
 \end{enumerate}
-
-
-
-
-
-
 
 % ----------------------------------------------------------------------
 \section{Deliverables and Program Schedule}
@@ -521,183 +458,111 @@ Here are \textit{some} activities---fill in more.
 \hline
 Date & Activity \\
 \hline
-2018-04-01 & Provisional PhD registration (PhD in Statistics). \\
-2018-05-01 & (Optional)
-             Updated my personal webpage at
-             \textsf{www.stat.auckland.ac.nz/$\sim$myStudentName}. \\
-2018-05-20 & Attended one of the
-             Doctoral Skills Programme's Induction Days. \\
-2018-09-01 & Gave my first talk at NZSA conference. Won first prize. \\
-2018-11-01 & Gave a talk to PhD Talks Day. \\
-2019-01-15 & Submit my first paper to \textit{Annals of Statistics}
-             (co-authored with supervisor). \\
-2019-05-01 & Presented my research progress to a departmental seminar. \\
-2020-01-20 & Achieve Goal~1. \\
-2020-08-20 & Achieve Goal~2. \\
-2020-10-23 & Submit my second paper to \textit{Annals of Applied Statistics}
-             (co-authored with supervisor). \\
-2020-01-15 & Submit my third paper to \textit{Biometrics}
-             (sole authorship). \\
-2020-02-01 & Submit my PhD thesis. \\
+2022-03-01 & Enrolled in Research Master's in Statistics, backdated provisional PhD registration. \\
+2022-11-07 & Made a Github commit of the initial fully working prototype of \texttt{plotscaper}. \\
+2022-11-22 & Gave talk at the NZSA Unconference, received Outstanding Student Presentation award. \\
+2023-02-13 & Completed DELNA. \\
+2023-03-10 & Attended central doctoral induction. \\
+2023-04-07 & Presented my research at Iowa State University Graphics Group \\
+2023-04-13 & Attended FoS doctoral induction. \\
+2023-05-14 & Present my research at a PYR seminar \\
+2023-08-01 & Finalize version 1.0 of \texttt{plotscape} and publish on \texttt{npm} \\
+2023-09-01 & Attend a statistical computing/data visualization conference \\
+2023-12-01 & Submit my first paper to \textit{Journal of Statistical Software} (co-authored with supervisors). \\
+2024-01-01 & Finalize version 1.0 of \texttt{plotscaper} and publish on \texttt{CRAN}. \\
+2024-03-01 & Begin work on formalizing the manuscript \\
+2024-06-01 & Attend a statistical computing/data visualization conference \\
+2025-03-01 & Submit my PhD thesis. \\
 \hline
 \end{tabular}
 \end{table}
 
 
 
-I have fulfulled all my first year requirements.
-These are:
+I have fulfulled all my first year requirements. These are:
+
 \begin{enumerate}
 
-\item
-All AFA provisional goals:
-\begin{enumerate}
+\item \textit{Attend the Central Doctoral Induction}: 2023-03-10
+\item \textit{Attend the FoS Doctoral Induction}: 2023-04-13
+\item \textit{Complete DELNA screening}: 2023-02-13
+\item \textit{Complete a health and safety risk assessment (if required)}: not required
+\item \textit{Gain ethics approval (if required)}: not required
+\item \textit{Complete training and development needs analysis}: completed prior to transferral from Research Master's
+\item \textit{Gain approval for your full thesis proposal}: in process
+\item \textit{Give an oral presentation of your work}: PYR seminar being scheduled for May
+\item \textit{Produce a substantial piece of written work}: roughly 80~percent Research Master's thesis submitted to primary supervisor for review, 
+code repositories available for review on Github at \texttt{https://github.com/bartonicek}
+\item \textit{Discuss your research with your Confirmation Review Committee}: in process \newline \newline
 
-\item
-\textit{Full thesis proposal normally completed within 6 months}:
-Here it is!
+Additional first year milestones:
 
-\item
-\textit{Completion of one substantial piece of written work within
-12 months}: Wrote 90~percent of Chapter~1 of my thesis, submitted
-one journal article, wrote 50~percent of Chapter~2 of my thesis.
-
-
-\item
-\textit{Presentation of research progress to a departmental seminar}:
-2019-05-01.
-
-\item
-\textit{Approval of the full thesis proposal by the appropriate
-departmental/faculty postgraduate committee}:
-Being done.
-
-\item
-\textit{Ethics approval(s)/permissions obtained for the research
-(if required)}:
-Not necessary.
-
-\item
-\textit{Attendance at one of the Doctoral Skills Programme's
-Induction Days}:
-2018-05-20.
-
-\end{enumerate}
-
-
-
-\item
-Although optional,
-it is a good idea to try update a personal webpage
-(ideally \textsf{www.stat.auckland.ac.nz/$\sim$myStudentName})
-giving details of my thesis, links to other research resources
-in my topic, and some personal stuff to make it interesting.
-
-
-
-\item
-I have diligently attend as many Statistics Department seminars
-as I could. They are given in Table~\ref{tab:seminars}.
-This is much more than the minimum quota set by the department.
-Consequently there should be no problem due to this when getting
-my annual report signed off\footnote{If insufficient seminars have
-been attended then sign off will occur \textit{after} the minimum number
-is reached.}.
-The 2018-10-08 seminar was particularly useful because it gave
-me an idea on how to solve one of my problems.
-
-
-
-\item
-I did STATS~730 in Semester~1 of 2018 and obtained an A+.
-
-
-
-\item
-I did STATS~782 in Semester~2 of 2018 and obtained an A.
-
+\item \textit{Attend 10 departmental seminars}: Currently 8 attended, I have had only about 3 months to attend departmental seminars (I did not know about this requirement before I decided to transfer from Research Master's) but have tried to attend as many as possible.
+\item \textit{Engage with other scholars}: Presented research at the NZSA Uncoference 2022 (and received an award) as well as at Iowa State University Graphics Group
+\item \textit{Review existing methods and literature on approaches to interactive statistical graphics}: Completed as part of the submitted draft of Research Master's Thesis
+\item \textit{Implement a software prototype capable of producing linked interactive plots with support for different types of brushing}: implemented in \texttt{plotscape}
 
 
 \end{enumerate}
 
 
-
-
-
-
-
-
-
-
-
-\begin{table}[hh]
+\begin{table}[H]
 \caption{
-Departmental seminars I have attended (top part of the table).
-Talks from another UoA department are in the middle tier.
-Conferences and workshops are in the bottom tier,
-e.g., 2019-05-29 event was an all-day workshop.
+\textbf{Seminars I have attended}.
+First section includes departmental seminars.
+Second section includes seminars from another UoA department.
+Third row includes conference talks.
+Fourth row includes talks I presented (these do not count towards seminar attendance as far as I am aware but I thought it may still be useful to include them) \newline
 \textbf{Note}:
-I filled in the required document and submitted it
-within the required time period after
-each seminar I attended.
+I filled in the required document and submitted it within the required time period after each seminar I attended.
 }
 \centering
 \ ~~~~ \\
 \label{tab:seminars}
-\begin{tabular}{|c|l|l|}
+\begin{tabular}{|c|l|p{10cm}|}
 \hline
 Date & Speaker & Title \\
 \hline
-2018-04-08 & David Brillinger &
-Random trajectories, some theory and applications \\
+2023-01-27 & Bradley Drayton &
+A Talk About Simulations \\
 %
-2018-02-30 & David Cox &
-Frequentist statistics as a theory of inductive inference \\
+2023-02-10 & Rob Gould &
+K-12 Data Science or Statistics? Is a Distinction Needed? \\
 %
-2018-10-08 & David Matthews &
-Estimating diagnostic test likelihood ratios \\
+2023-02-22 & Maartje van de Vrugt &
+Experiences of an OR Specialist Advising in a Hospital: Reducing Cancellations and
+Scheduling Re-work at Outpatient Departments of Amsterdam UMC \\
 %
-yyyy-mm-dd & Speaker Name &
-Title of Talk \\
+2023-03-07 & Chaitanya Joshi &
+Eliciting Informative Priors using Expert decision-making \\
 %
-yyyy-mm-dd & Speaker Name &
-Title of Talk \\
+2023-03-07 & Fabrizio Ruggeri &
+Fast and Likelihood-Free Parameter Estimation for Dynamic Queueing Networks: The
+Case of the Immigration Queue at an International Airport \textit{(counts as 1/2 seminar)} \\
 %
-yyyy-mm-dd & Speaker Name &
-Title of Talk \\
+2023-03-07 & Petra Tang &
+A Parametric Approach to estimate Spectral Density of Gravitational Wave Signal from
+BPASS Galactic White Dwarf Binary Population \textit{(counts as 1/2 seminar)} \\
 %
-yyyy-mm-dd & Speaker Name &
-Title of Talk \\
-%
-yyyy-mm-dd & Speaker Name &
-Title of Talk \\
-%
-yyyy-mm-dd & Speaker Name &
-Title of Talk \\
-%
-yyyy-mm-dd & Speaker Name &
-Title of Talk \\
-%
-yyyy-mm-dd & Speaker Name &
-Title of Talk \\
-%
-yyyy-mm-dd & Speaker Name &
-Title of Talk \\
-%
-yyyy-mm-dd & Speaker Name &
-Title of Talk \\
-%
+2023-03-30 & Matt Edwards &
+The Good, the Bad, and the Ugly of Working at StatsNZ \\
 \hline
-2018-06-16 & James B.~Conant &
-``Geography is not a university subject'' (geo Department) \\
-%
-yyyy-mm-dd & Speaker Name &
-Title of Talk \\
+
+2023-04-12 & Christopher Horvat &
+How Do the Floes Flow? Discrete-Element Modelling of Sea Ice-Ocean Dynamic Coupling in the Marginal Ice Zone. \newline Department of Physics. \\
+
 \hline
-2019-05-29 & David Siegmund &
-Workshop on `Genetic Mapping' at UoA. \\
-%
+
+2022-11-23 & Tilman Davies & Nearest-Neighbour Gaussian Processes. \newline NZSA Unconference 2022. \\
+
 \hline
+%
+2022-11-22 & Adam Bartonicek (presented) & Interactive Data Exploration with \texttt{plotscaper}. \newline NZSA Unconference 2022 \\
+%
+2023-04-07 & Adam Bartonicek (presented) & \textit{Same title as above}. \newline Iowa State University Graphics Group \\
+
+\hline
+
 \end{tabular}
 \end{table}
 
@@ -710,50 +575,6 @@ Workshop on `Genetic Mapping' at UoA. \\
 
 % ----------------------------------------------------------------------
 \section*{Appendix~A}
-
-Delete or replace the contents of this section with any
-appendices you may have.
-
-\bigskip
-
-\bigskip
-
-The \textit{University of Auckland Statute and Guidelines for the
-Degree of Doctor of Philosophy (PhD)} (2016)
-reads\footnote{Regulation~1, Preamble, item~(e).}:
-
-\bigskip
-
-
-\noindent
-``The PhD degree is awarded for a formal and systematic
-exposition of a coherent programme of advanced research
-work. The work is  carried out over the period of enrolment
-for the degree, and in the opinion of the examiners and the Board
-of Graduate Studies, satisfies all of the following criteria:
-
-\begin{itemize}
-
-\item[(i)] is an original contribution to knowledge or
-understanding in its field, and
-
-\item[(ii)] meets internationally recognised standards
-for such work, and
-
-\item[(iii)] demonstrates knowledge of the literature
-relevant to the subject and the field or fields to which
-the subject belongs, and the ability to exercise critical
-and analytical judgement of it, and
-
-\item[(iv)] is satisfactory in its methodology, in the
-quality and coherence of its expression, and in
-its scholarly presentation and format.''
-
-\end{itemize}
-
-
-
-
 
 \addcontentsline{toc}{section}{References}
 \bibliographystyle{./elsart-harv} % elsart-harv,plain,unsrt,alpha
