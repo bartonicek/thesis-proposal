@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (preloaded format=pdflatex 2022.10.6)  21 APR 2023 09:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (preloaded format=pdflatex 2022.10.6)  24 APR 2023 09:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**template.tex
-(./template.tex
+**thesis-proposal.tex
+(./thesis-proposal.tex
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2022-02-21> (/home/adam/.TinyTeX/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
@@ -116,53 +116,73 @@ LaTeX Info: Redefining \[ on input line 2938.
 LaTeX Info: Redefining \] on input line 2939.
 ) (/home/adam/.TinyTeX/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
-) (/home/adam/.TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+) (/home/adam/.TinyTeX/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count273
+\lst@gtempboxa=\box54
+\lst@token=\toks25
+\lst@length=\count274
+\lst@currlwidth=\dimen150
+\lst@column=\count275
+\lst@pos=\count276
+\lst@lostspace=\dimen151
+\lst@width=\dimen152
+\lst@newlines=\count277
+\lst@lineno=\count278
+\lst@maxwidth=\dimen153
+ (/home/adam/.TinyTeX/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
+\c@lstnumber=\count279
+\lst@skipnumbers=\count280
+\lst@framebox=\box55
+) (/home/adam/.TinyTeX/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2020/03/24 1.8d listings configuration
+))
+Package: listings 2020/03/24 1.8d (Carsten Heinz)
+ (/home/adam/.TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2022-02-07 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count273
-\l__pdf_internal_box=\box54
-) (./template.aux
+\l__color_backend_stack_int=\count281
+\l__pdf_internal_box=\box56
+) (./thesis-proposal.aux)
+\openout1 = `thesis-proposal.aux'.
 
-LaTeX Warning: Label `fig:empty' multiply defined.
-
-)
-\openout1 = `template.aux'.
-
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
  (/home/adam/.TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
  (/home/adam/.TinyTeX/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
-)) [1
+))
+\c@lstlisting=\count282
+ [1
 
 {/home/adam/.TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 130.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 125.
  (/home/adam/.TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 130.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 125.
  (/home/adam/.TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 2671) in paragraph at lines 143--143
+Underfull \hbox (badness 2671) in paragraph at lines 138--138
 []\OT1/cmr/m/n/12 Change re-flects an un-der-ly-ing
  []
 
 
-Overfull \hbox (1.19112pt too wide) in paragraph at lines 145--145
+Overfull \hbox (1.19112pt too wide) in paragraph at lines 140--140
 []\OT1/cmr/m/n/12 (Cognitive)| 
  []
 
@@ -170,62 +190,74 @@ Overfull \hbox (1.19112pt too wide) in paragraph at lines 145--145
 <./figure03.pdf, id=25, 433.62pt x 216.81pt>
 File: ./figure03.pdf Graphic file (type pdf)
 <use ./figure03.pdf>
-Package pdftex.def Info: ./figure03.pdf  used on input line 207.
+Package pdftex.def Info: ./figure03.pdf  used on input line 201.
 (pdftex.def)             Requested size: 398.3596pt x 199.16928pt.
  [7 <./figure03.pdf>]
-<./figure01.pdf, id=35, 433.62pt x 216.81pt>
+<./figure04.pdf, id=35, 433.62pt x 216.81pt>
+File: ./figure04.pdf Graphic file (type pdf)
+<use ./figure04.pdf>
+Package pdftex.def Info: ./figure04.pdf  used on input line 210.
+(pdftex.def)             Requested size: 398.3596pt x 199.16928pt.
+<./figure01.pdf, id=36, 433.62pt x 216.81pt>
 File: ./figure01.pdf Graphic file (type pdf)
 <use ./figure01.pdf>
-Package pdftex.def Info: ./figure01.pdf  used on input line 223.
+Package pdftex.def Info: ./figure01.pdf  used on input line 222.
 (pdftex.def)             Requested size: 398.3596pt x 199.16928pt.
-<./figure02.pdf, id=36, 433.62pt x 216.81pt>
+ [8 <./figure04.pdf>]
+<./figure02.pdf, id=46, 433.62pt x 216.81pt>
 File: ./figure02.pdf Graphic file (type pdf)
 <use ./figure02.pdf>
-Package pdftex.def Info: ./figure02.pdf  used on input line 232.
+Package pdftex.def Info: ./figure02.pdf  used on input line 233.
 (pdftex.def)             Requested size: 398.3596pt x 199.16928pt.
- [8 <./figure01.pdf>] [9 <./figure02.pdf>] [10] [11] [12] [13]
-Overfull \hbox (25.28818pt too wide) in paragraph at lines 451--472
+ [9 <./figure01.pdf>] [10 <./figure02.pdf>] [11] [12] [13] [14]
+Overfull \hbox (1.33025pt too wide) in paragraph at lines 406--407
+\OT1/cmr/m/n/12 time its ex-e-cu-tion and record, e.g. \OT1/cmtt/m/n/12 new Timer(largeArray, []).map(double).map(square).times
+ []
+
+[15]
+Overfull \hbox (9.32373pt too wide) in paragraph at lines 441--442
+[]\OT1/cmr/bx/n/12 For co-her-ent two-way in-ter-ac-tion, the sum-maries have to form a \OT1/cmr/bx/it/12 sym-met-ric monoidal
+ []
+
+[16] [17]
+Overfull \hbox (25.28818pt too wide) in paragraph at lines 545--566
  [][] 
  []
 
-[14]
-Underfull \hbox (badness 10000) in paragraph at lines 490--491
+
+Underfull \hbox (badness 10000) in paragraph at lines 584--585
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 490--491
+Underfull \hbox (badness 10000) in paragraph at lines 584--585
 
  []
 
-
-Underfull \hbox (badness 1603) in paragraph at lines 531--533
+[18]
+Underfull \hbox (badness 1603) in paragraph at lines 625--627
 []\OT1/cmr/m/n/12 Eliciting In-for-ma-tive Pri-ors us-ing Ex-pert decision-
  []
 
 
-Overfull \hbox (15.52863pt too wide) in paragraph at lines 516--561
+Overfull \hbox (15.52863pt too wide) in paragraph at lines 610--655
  [][] 
  []
 
-[15] (./template.bbl [16] [17] [18]) [19] (./template.aux)
-
-LaTeX Warning: There were multiply-defined labels.
-
- ) 
+[19] (./thesis-proposal.bbl [20] [21] [22]) [23] (./thesis-proposal.aux) ) 
 Here is how much of TeX's memory you used:
- 2839 strings out of 480238
- 41702 string characters out of 5895836
- 335124 words of memory out of 5000000
- 20778 multiletter control sequences out of 15000+600000
- 477255 words of font info for 57 fonts, out of 8000000 for 9000
+ 4226 strings out of 480238
+ 61978 string characters out of 5895836
+ 356612 words of memory out of 5000000
+ 22152 multiletter control sequences out of 15000+600000
+ 477614 words of font info for 58 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 55i,10n,62p,1775b,305s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,10n,62p,2005b,307s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/adam/.TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></home/adam/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on template.pdf (19 pages, 238475 bytes).
+Output written on thesis-proposal.pdf (23 pages, 257214 bytes).
 PDF statistics:
- 161 PDF objects out of 1000 (max. 8388607)
- 102 compressed objects within 2 object streams
+ 179 PDF objects out of 1000 (max. 8388607)
+ 114 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

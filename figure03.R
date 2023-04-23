@@ -20,17 +20,19 @@ plot(wt, mpg, col = col, pch = 19, cex = 1.5,
 rect(1.425, 24.5, 2.5, 34.5, lty = "dashed")
 axis_fun1()
 
-hist(mtcars$mpg, col = "grey80", border = NA, axes = FALSE,
-    main = "", xlab = "Mileage")
-hist(mtcars$mpg[selected], add = TRUE, col = "indianred", border = NA)
-text(27.5, 10, labels = c("Brushing:\nRecompute\nselected bins only"), col = "indianred")
+breaks <- seq(10, 34, 2)
+hist(mtcars$mpg, col = "grey80", breaks = breaks,
+     border = NA, axes = FALSE, main = "", xlab = "Mileage")
+hist(mtcars$mpg[selected], breaks = breaks, add = TRUE, col = "indianred", border = NA)
+text(26, 6, labels = c("Brushing:\nRecompute bin\ncounts only"), col = "indianred")
 axis_fun1()
 
-hist(mtcars$mpg, breaks = 10, col = "grey80", border = NA, axes = FALSE,
-     main = "", xlab = "Mileage")
-text(25.5, 6, labels = c("Changing binwidth:\nRecompute selected\nAND original bins"),
+breaks <- seq(10, 34, 1)
+hist(mtcars$mpg, breaks = breaks, 
+     col = "grey80", border = NA, axes = FALSE, main = "", xlab = "Mileage")
+text(25.5, 3.5, labels = c("Changing binwidth:\nRecompute breaks\nAND bin counts"),
      col = "indianred")
-hist(mtcars$mpg[selected], breaks = 10, add = TRUE, col = "indianred", border = NA)
+hist(mtcars$mpg[selected], breaks = breaks, add = TRUE, col = "indianred", border = NA)
 axis_fun1()
 
 dev.off()

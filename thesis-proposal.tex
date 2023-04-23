@@ -16,6 +16,7 @@
  \usepackage{amsfonts}
  \usepackage{amsmath}
  \usepackage{amssymb}
+ \usepackage{listings}
 
  \oddsidemargin  -10mm
  \evensidemargin -10mm
@@ -54,18 +55,15 @@ Supervisor: Dr.~Simon~Urbanek
 
 Co-supervisor: Dr.~Paul~Murrell
 
-Advisory Committee: Drs~B.~Efron, D.~R.~Cox, K.~Pearson.
-
+Advisory Committee: Drs~T.~Yee, D.~R.~Millar
 
 
 \begin{center}
 Date of enrolment in the programme and expected date of completion
 \end{center}
 
-
-
 \begin{center}
-\today
+February 1 2022, August 1 2025
 \end{center}
 
 
@@ -73,8 +71,6 @@ Date of enrolment in the programme and expected date of completion
 This document represents the student's research proposal after
 one year of provisional PhD registration.
 Confirmed PhD registration is now sought.
-
-
 
 
 % ----------------------------------------------------------------------
@@ -92,11 +88,11 @@ Humans learn about the world around them by interacting with it. Further, as maj
 
 \end{enumerate}
 
-The libraries from the first camp are usually more approachable to users with less programming experience. This makes them very useful to specialists and applied researchers. However, the major drawback of these libraries is that they are not extendable. As for the libraries from the second camp, these tend to lend the user great deal of power and flexibility, however, to use them effectively, the users are required to have significant programming experience and deep knowledge of the specific API. This is especially true when it comes to implementing up complex interaction between multiple plots. Further, the responsibility for making sure that the interaction is coherent is left to the user: there is nothing stopping them from implementing interactive features that are meaningless, confusing, or unpredictable. Finally, the design philosophy behind many of these libraries seems to be oriented towards data presentation rather than data exploration \citep{batch2017}. As such, within the interactive data visualization sphere, there is currently a lack of a solid mid-level, multi-plot interaction system geared towards data exploration.
+The libraries from the first camp are usually more approachable to users with less programming experience. This makes them very useful to specialists and applied researchers. However, the major drawback of these libraries is that they are not extendable. As for the libraries from the second camp, these tend to lend the user a great deal of power and flexibility, however, to use them effectively, the users are required to have significant programming experience and deep knowledge of the specific API. This is especially true when it comes to implementing up complex interaction between multiple plots. Further, the responsibility for making sure that the interaction is coherent is left to the user: there is nothing stopping them from implementing interactive features that are meaningless, confusing, or unpredictable. Finally, the design philosophy behind many of these libraries seems to be oriented towards data presentation rather than data exploration \citep{batch2017}. As such, within the interactive data visualization sphere, there is currently a lack of a solid mid-level, multi-plot interaction system geared towards data exploration.
 
-The abovementioned absence of a mid-level is not just an implementation gap. Rather, it seems to be a symptom of an underlying lack of a strong theoretical foundation. Specifically, many types of interactive plots can be created and composed toghether, however, only some of these compositions will produce coherent graphics (see Section \ref{sec:coherency}). At the present time, there is no formal framework for determining ahead of time whether the graphic will be coherent or not. As a consequence, the two options left to the creators of interactive data visualizations systems are either: 1) give the user a limited number of ready-made solutions that are known to behave well, or 2) put the onus of making sure that the interaction is coherent onto the user - which precisely map onto to the two interactive data visualization camps outlined above. 
+The abovementioned absence of a mid-level is not just an implementation gap. Rather, it seems to be a symptom of an underlying lack of a strong theoretical foundation. Specifically, while many different types of interactive plots can be created and composed toghether, only some of these compositions will produce coherent graphics (see Section \ref{sec:coherency}). At the present time, there is no formal framework for determining ahead of time whether an interactive graphic will be coherent or not. As a consequence, the two options left to the creators of interactive data visualizations systems are either: 1) give the user a limited number of ready-made solutions that are known to behave well, or 2) put the onus of making sure that the interaction is coherent onto the user - which precisely map onto to the two interactive data visualization camps outlined above. 
 
-The goal of the proposed project is to lay down the theoretical foundations for such a mid-level interactive data exploration system, as well as implement it within a modern programming language. Specifically, at the theoretical level, I plan to map out the boundaries and constraints that parts of interactive graphics systems (e.g. datastructures and graphical primitives) need to satisfy in order to produce coherent interactions. To this end, I will use concepts from area of mathematics called category theory (see Section \ref{ref:categorytheory}). At the applied level, I will implement the system in \textbf{JavaScript} and provide a high-level interface in \textbf{R}.  
+The goal of the proposed project is to lay down the theoretical foundations for a mid-level interactive data exploration system, as well as implement it within a modern programming language. Specifically, at the theoretical level, I plan to map out the boundaries and constraints that parts of interactive graphics systems (e.g. datastructures and graphical primitives) need to satisfy in order to produce coherent interactions. To this end, I will use concepts from area of mathematics called category theory (see Section \ref{ref:categorytheory}). At the applied level, I will implement the system in \textbf{JavaScript} and provide a high-level interface in \textbf{R}.  
 
 % ----------------------------------------------------------------------
 \section{Background}
@@ -105,10 +101,9 @@ The goal of the proposed project is to lay down the theoretical foundations for 
 \subsection{What Event Counts as \textit{Interactive} Data Visualization?}
 \label{sec:whatcounts}
 
-It may seem surprising, but despite the widespread popularity of interactive data visualizations, there seems to be little consensus as to what actually makes a data visualization interactive. The term gets used by different researchers in vastly different contexts, sometimes in arguably conflicting ways. As such, for the purposes of the present text, it is important to disambiguate what is meant by "interactive data visualization".  
+It may seem surprising, but despite the widespread popularity of interactive data visualizations, there seems to be little consensus as to what actually makes a data visualization interactive. The term gets used by different researchers in vastly different contexts, sometimes in arguably conflicting ways. As such, for the purposes of the present text, it is important to disambiguate what is meant by "interactive data visualization".
 
-Firstly, there is the issue of whether "interactive data visualization" refers to an object or system, or to an action, undertaken by a human being. \cite{pike2009} note that 
-"interaction" is an overloaded term that can refer to either the concrete tools which users use to manipulate visual information or to the more abstract "human interaction with information" - the back-and-forth between the user and the visual information presented to them \citep[see also][]{yi2007}. The more abstract action definition is more often emphasized in the field of Human Computer Interaction \citep[see e.g.][]{sinha2010}. For the purpose of this text, the object/system definition will be used - interactive data visualizations are concrete objects that are produced by (typically computer-based) systems/pipelines that take in raw data and produce images that can be interpreted and manipulated by humans \citep{brodbeck2009}.
+Firstly, there is the issue of whether "interactive data visualization" refers to an object or system, or to an action, undertaken by a human being. \cite{pike2009} note that "interaction" is an overloaded term that can refer to either the concrete tools which users use to manipulate visual information or to the more abstract "human interaction with information" - the back-and-forth between the user and the visual information presented to them \citep[see also][]{yi2007}. The more abstract action definition is more often emphasized in the field of Human Computer Interaction \citep[see e.g.][]{sinha2010}. For the purpose of this text, the object/system definition will be used - interactive data visualizations are concrete objects that are produced by (typically computer-based) systems/pipelines that take in raw data and produce images that can be interpreted and manipulated by humans \citep{brodbeck2009}.
 
 \subsubsection{Simple Interactivity}
 
@@ -150,7 +145,6 @@ Parametric & Change reflects an underlying model & The user can manipulate the p
 
 The conceptual ambiguity about what gets called "interactive" visualization matters because it leads to radically different implementations in software packages (see Sections \ref{sec:briefhistory} and \ref{sec:currentage}). For example, the \textbf{R Graph Gallery} page on \textbf{Interactive Charts} \citep{holtz2022} features several examples of interactive visualizations, however, none of them meet the linked and parametric definitions of interactivity outlined in Table \ref{tab:definitions}. Interactive data visualization systems that exist within the open source data visualization ecosystem differ significantly in the amount of features and flexibility they offer, as well as in how much responsibility or "house-keeping" for maintaining the interactive state they offload onto the user.     
 
-
 \subsection{Brief History of Interactive Data Visualization in Statistics}
 \label{sec:briefhistory}
 
@@ -162,13 +156,13 @@ Final development in the field of static data visualization that is important to
 
 \subsubsection{Birth of Interactive Visualization}
 
-As static visualization entered the computer age, interactive data visualization would not be left far behind. Early systems appeared in the 1960's and 1970's, and tended to be specialized for one specific task. For example, \cite{fowlkes1969} used interactive visualization to show how probability densities reacted to change of parameters and transformations, and \cite{kruskal1964} used interactive visualization to showcase his multi-dimensional scaling algorithm (a way of embedding objects within a common space based on pairwise distance measurements). The first "general-purpose" system was \textbf{PRIM-9} \citep{fisherkeller1974}, which allowed for exploration of high-dimensional data in scatterplots using projection, rotation, subsetting and masking. Later systems grew on to become even more general and ambitious. For example, \textbf{MacSpin} \citep{donoho1988} and \textbf{XGobi} \citep{swayne1998} provided features such as interactive scaling, rotation, linked selection (or "brushing"), and interactive plotting of smooth fits in scatterplots, as well as interactive parallel coordinate plots and grand tours.
+As static visualization entered the computer age, interactive data visualization would not be left far behind. Early systems appeared in the 1960's and 1970's, and tended to be specialized for one specific task. For example, \cite{fowlkes1969} used interactive visualization to show how probability densities reacted to change of parameters and transformations, and \cite{kruskal1964} used interactive visualization to showcase his multi-dimensional scaling algorithm (a way of embedding objects within a common space based on pairwise distance measurements). The first "general-purpose" system was \textbf{PRIM-9} \citep{fisherkeller1974}, which allowed for exploration of high-dimensional data in scatterplots using projection, rotation, subsetting and masking. Later systems grew on to become even more general and ambitious. For example, \textbf{MacSpin} \citep{donoho1988}, \textbf{Lisp-Stat} and \textbf{XLISP-STAT} \citep{tierney1989, tierney2004}, and \textbf{XGobi} \citep{swayne1998} provided rich features such as interactive scaling, rotation, linked selection (or "brushing"), and interactive plotting of smooth fits in scatterplots, as well as interactive parallel coordinate plots and grand tours.
 
 Following the turn of the 21st century, interactive data visualization systems saw even scope and flexibility and also began to be integrated into general-purpose statistical computing software. The successor system to XGobi, \textbf{GGobi} \citep{swayne2003} was made to be directly embeddable in R. Java-based \textbf{Mondrian} \citep{theus2002} allowed for sophisticated linked interaction between many different types of plots including scatteplots, histograms, barplots, scatterplot, mosaic plots, parallel coordinates plots, and maps. Finally, \textbf{iPlots} \citep{urbanek2003} implemented a general framework for interactive plotting that was not only embedded in R but could be directly programmatically manipulated, and was later further expanded and made performant for big data in \textbf{iPlots eXtreme} \citep{urbanek2011}.
 
 \subsubsection{Common Features of Statistical Systems}
 
-The statistics-based interactive data visualization systems came in various forms, however, they generally tended to support features such as multiple ready-made plot-types, interaction between multiple plots with shared underlying data and state, and interactive manipulation of model parameters. They tended to be oriented towards scientific audience, with data exploration as the primary goal. Finally, they tended to be made to be directly embedabble and interoperable with general-purpose statistical computing software.      
+The statistics-based interactive data visualization systems came in various forms, however, they generally tended to support features such as multiple ready-made plot-types, interaction between multiple plots with shared underlying data and state, and interactive manipulation of model parameters. They tended to be oriented towards scientific audience, with data exploration as the primary goal. To this end, they were usually more specialized, allowing the users to choose from a set of ready-made plots that could be combined together. Finally, these systems tended to be made to be directly embedabble and interoperable with general-purpose statistical computing software.      
 
 \subsection{The Web and Current Age Interactive Data Visualization}
 \label{sec:currentage}
@@ -178,29 +172,29 @@ The statistics-based interactive data visualization systems came in various form
 
 The developments in interactive data visualization within the field of Statistics were paralleled by those within Computer Science. Most notably, the rise of Web technologies in the mid 1990's and the appearance of JavaScript in 1995 as a high-level general-purpose programming language for the Web \citep[for a description of the history, see e.g.][]{wirfs-brock2020}, created an extremely versatile platform for highly-reactive and portable applications. JavaScript was created with the explicit purpose of making the Web interactive, and the fast dissemination of standardized web-browsers meant that online interactive applications could be accessed by anyone, from anywhere. Interactive data visualization became just one of many technologies highly sought after within the fledgling Web ecosystem. 
 
-The very early systems such as \textbf{Prefuse} in 2005 \citep{heer2005} and \textbf{Flare} in 2008 \citep{flare2020} relied on plugins (Java and Adobe Flash Player, respectively). However, in the early 2010's, several true Web-native JavaScript-based interactive data visualization systems emerged. The most prominent among these is \textbf{D3}.js \citep{bostock2011}. D3 is a broad and general framework for manipulating HTML documents using data and displaying it with visualizations. It is in popular use still to this day and has spawned a number of specialized, higher-level data visualization libraries that abstract away the details and provide an interface to commonly used statistical plots, such as the also very prominent \textbf{plotly}.js \citep{plotly2022}. Importantly, in the D3 model, D3's engine only renders graphics: interactivity is left the user. If a user wants to create a visualization that's interactive, she has to write JavaScript functions that take care of updating the underlying parameters. A radically different approach altogether was taken by \textbf{Vega} \citep{satyanarayan2015}. In Vega, all aspects of a visualization including interactivity are specified declaratively, as a Plain Old JavaScript Object (POJO). As such, Vega carries a large number of reactive primitives. Similar to D3 and plotly, Vega also spawned its own higher-level libraries in \textbf{Vega-lite} \citep{satyanarayan2016}, and \textbf{Altair} \citep{vanderplas2018}. A final popular interactive data visualization library in JavaScript is \textbf{Highcharts} \citep{highcharts2023}. Similar to Vega-lite, Highcharts is a high-level declarative framework in which plots are created based on a POJO specification object. 
+The very early systems such as \textbf{Prefuse} in 2005 \citep{heer2005} and \textbf{Flare} in 2008 \citep{flare2020} relied on plugins (Java and Adobe Flash Player, respectively). However, in the early 2010's, several true Web-native JavaScript-based interactive data visualization systems emerged. The most prominent among these is \textbf{D3}.js \citep{bostock2011}. D3 is a broad and general framework for manipulating data and HTML documents and creating visualizations. It is in popular use still to this day and has spawned a number of specialized, higher-level data visualization libraries that abstract away the details and provide an interface to commonly used statistical plots, such as the also very prominent \textbf{plotly}.js \citep{plotly2022}. Importantly, in the D3 model, D3's engine only renders graphics: interactivity is left the user. If a user wants to create a visualization that's interactive, she has to write JavaScript functions that take care of updating the underlying parameters. A radically different approach altogether was taken by \textbf{Vega} \citep{satyanarayan2015}. In Vega, all aspects of a visualization including interactivity are specified declaratively, as a Plain Old JavaScript Object (POJO). As such, Vega carries a large number of reactive primitives. Similar to D3 and plotly, Vega also spawned its own higher-level libraries in \textbf{Vega-lite} \citep{satyanarayan2016}, and \textbf{Altair} \citep{vanderplas2018}. A final popular general interactive data visualization framework in JavaScript is \textbf{Highcharts} \citep{highcharts2023}. Similar to Vega-lite, Highcharts is a high-level declarative framework in which plots are created based on a POJO specification object. Finally, besides the general interactive data visualization frameworks, there are also many more specialized libraries focusing on e.g. rendering interactive scatterplots at big data volumes \citep[see e.g.][]{lekschas2023}.   
 
 \subsubsection{Common Features of Web-based Systems}
 
-These contemporary web-based interactive data visualization systems offer a great deal of expressiveness, however, it does seem to come at a cost. Specifically, the low-level frameworks like D3 and Vega allow the users to create almost arbitrarily complex interactive figures, and even the higher-level frameworks like plotly, Vega-lite, Altair, and Highcharts still offer a great deal of customizability. Yet, a lot of code and programmer time is required to create complex interactive figures, even in these higher-level frameworks. As a result, most examples that show up on the web or on the libraries' own showcase pages typically feature only shallow interactivity within a single plot - such as zooming, panning, and pop-up labels - and examples of more complex multi-plot interaction such as linked brushing or cross-filtering are far less common. Further, the coherence of interactivity is left to the user: there is nothing stopping them from creating figures with meaningless interactive features. As such, it is hard to call the frameworks like Vega-lite, Altair, and plotly true mid-level systems, the way that ggplot2 can be called a mid-level system for static graphics.  
+These contemporary web-based general interactive data visualization systems usually offer a great deal of expressiveness, however, it does seem to come at a cost. Specifically, the low-level frameworks like D3 and Vega allow the users to create almost arbitrarily complex interactive figures, and even the higher-level frameworks like plotly, Vega-lite, Altair, and Highcharts still offer a great deal of customizability. Yet, a lot of code and programmer time is required to create complex interactive figures, even in these higher-level frameworks. As a result, most examples that show up on the web or on the libraries' own showcase pages typically feature only shallow interactivity within a single plot - such as zooming, panning, and pop-up labels - and examples of more complex multi-plot interaction such as linked brushing or cross-filtering are far less common. Further, the burden of making sure that interactivity is coherent is left to the user: there is nothing stopping them from creating figures with meaningless interactive features. As such, it is difficult to call the frameworks like Vega-lite, Altair, and plotly true mid-level systems, in the way that ggplot2 can be called a mid-level system for static graphics.  
 
-The target audience of the web-based systems is also very different from that of the statistical systems (discussed in Section \ref{sec:briefhistory}). Most real-world use examples come from online news articles and business/government dashboards, with considerably fewer appearing in scientific outlets. Likewise, the focus seems to be more on data presentation rather than data exploration - communicating findings once they have been found rather than discovering them in the first place. This seems to make sense given the design of these systems - it is worth it to create complex interactive visualizations when there is the guarantee that many people will see the result; however, conversely, it may not be economical to do so with $n = 1$ (i.e. when the user is the only person who will see the visualization). Data presentation and data exploration are both very important pursuits, however, it does seem that the market for interactive data visualizations for EDA is currently underserved, and this may explain why seemingly few data scientists use interactive visualizations to explore their data \citep{batch2017}.  
+The target audience of the web-based systems is also very different from that of the statistical systems (discussed in Section \ref{sec:briefhistory}). Most real-world use examples come from online news articles and business/government dashboards, with considerably fewer appearing in scientific outlets. Likewise, the focus seems to be more on data presentation rather than data exploration - communicating findings once they have been found rather than discovering them in the first place. This seems to make sense given the design of these systems: it is worth it to create complex interactive visualizations when there is the guarantee that many people will see the result. However, conversely, it may not be economical to put that much work into an interactive visualization when $n = 1$ (i.e. when the user is the only person who will see the visualization). Data presentation and data exploration are both very important pursuits, however, it does seem that the market for interactive data visualizations for EDA is currently underserved, and this may explain why seemingly few data scientists use interactive visualizations to explore their data \citep{batch2017}.  
 
 \subsection{Specialization vs. Generality}
 
-To re-state the common thread from the previous sections, over the last 30 years or so, interactive data visualization has undergone a divergent evolution within two largely independent branches: statistical and web-based/computer science. Different goals and features were prioritized within each branch. The statistical branch focused on creating specialized systems for scientific data exploration. Users could easily create complex interactive figures by picking from a limited range of pre-made, "out-of-the-box" plots that were designed to behave coherently and consistently when composed together. Conversely, in the web-based branch, greater focus was put on generality and data presentation. Users were given a great deal of power and flexibility to create arbitrarily complex interactive figures from scratch, however, the onus for ensuring the interactivity was coherent and consistent was put on them.
+To re-state the common thread from the previous sections, over the last 30 years or so, interactive data visualization has undergone a divergent evolution within two largely independent branches: statistical and web-based/computer science. Different goals and features were prioritized within each branch. The statistical branch focused on creating specialized systems for scientific data exploration. Users could easily create complex interactive figures by picking from a limited range of pre-made, "out-of-the-box" plots that were designed to behave coherently and consistently when composed together. Conversely, in the web-based branch, greater focus was put on generality and data presentation. Users are given a great deal of power and flexibility to create arbitrarily complex interactive figures from scratch, however, the onus for ensuring the interactivity is coherent and consistent is put on them.
 
-The difference between the two branches represents a fundamental tension between specialization and generality. Specialized systems are easy to use but hard to extend; generic systems are extensible by definition but require time and effort to use effectively.  
+The difference between the two branches represents a fundamental tension between specialization and generality. Specialized systems are easy to use but hard to extend; general systems are flexibla and extensible, by definition, but require time and skill to use effectively. Between these two extremes, there may be sometimes room for a mid-level system that imposes some contraints but still leaves the users many degrees of freedom to operate with. It is the goal of the presently proposed research to lay the foundations for such a system. However, creating such a system for interactive data visualization poses a unique set of problems and challenges, and it is necessary to discuss those first.
 
 \subsection{The Problem of Statistical Summaries}
 
 Every data visualization has at least one graphical primitive or geometric object that is used to represent some statistical summary of the data. This is true for both static and interactive visualizations. For example, the position of a point on a scatterplot represents the values of the variables on the x- and y-axes. Typically, the statistical summary used in a scatterplot is identity, meaning that the x- and y-position of the point represents the raw values of those variables. As another example, the height of a bar in a histogram conventionally represents the number of cases within a binned range of the x-axis variable. 
 
-In static data visualizations, we are free to compute any kind of statistical summary we like. However, this does not translate to interactive visualizations. Instead, interactive visualizations are subject to a unique set of constraints and challenges.
+In static data visualizations, we are essentially free to compute any kind of statistical summary we like. However, this does not translate to interactive visualizations. Instead, the "interactive" part of interactive data visualization places some contraints on the set of statistical summaries that can be used.  
 
-\subsubsection{Computational Cost}
+\subsubsection{Computational Cost and Reactive Cascades}
 
-First of, there is the problem of computing resources. In static visualizations, we only need to compute any summary once, before we render the plot. However, this may not the case in interactive visualizations. Specifically, if the the summaries can be affected by the user's input, we can no longer just "fire-and-forget" but instead our system needs to be able to be able to recompute the summaries reactively, on-the-fly. For example, if the width of the bins in an interactive histogram changes, we need to recompute the number of cases within each bin. This incurs an additional computational cost. If the statistical summary is too computationally expensive, the volume of data is too high, or if the user's input changes too rapidly, it may not be possible to render the interaction smoothly enough. To clarify, this problem only arises when the interaction needs to refer back to the original data (i.e. when the interaction is linked, querying, or parametric, as described in Section \ref{sec:whatcounts}); no extra cost is incurred by e.g. interactively changing the opacity of graphical primitives, irrespective of the data. However, for the more complex types of interaction, the necessity to recompute summaries reactively can create computational bottlenecks.   
+First of, there is the problem of computing resources. In static visualizations, we only need to compute each statistical summary once, before we render the plot. However, this may not the case in interactive visualizations. Specifically, if the the summaries can be affected by the user's input, we can no longer just "fire-and-forget" but instead our system needs to recompute the summaries reactively, whenever interaction happens. For example, if the width of the bins in an interactive histogram changes, we need to recompute the number of cases within each bin. This incurs an additional computational cost. If the statistical summary is too computationally expensive, the volume of data too high, or if the user's input changes too rapidly, it may not be possible to render the graphic smoothly enough. To clarify, this problem only arises when the interaction needs to refer back to the original data (i.e. when the interaction is linked, querying, or parametric, as described in Section \ref{sec:whatcounts}); no extra cost is incurred by e.g. interactively changing the opacity of graphical primitives, irrespective of the data. However, for the more complex and interesting types of interaction, the necessity to recompute summaries reactively can create computational bottlenecks.   
 
 \begin{figure}[H]
 \centering
@@ -209,14 +203,19 @@ First of, there is the problem of computing resources. In static visualizations,
 \label{fig:reactivecascade}
 \end{figure}
 
-Importantly, these reactive computations can cascade and form hierarchies. Using the example of the interactive histogram above, if the histogram also responds to linked brushing, we have reactivity occuring on two different levels, as shown in Figure \ref{fig:reactivecascade}. Firstly, when linked brushing occurs, we only need to recompute the number of cases within each bin belonging to the selection. However, if the width of the bins changes, we need to recompute both the number of cases within each bin belonging to the selection as well as the number of cases within the original, unselected bins.    
+Importantly, these reactive computations can also cascade and form hierarchies. Using the example of the interactive histogram above, if the histogram also responds to linked brushing, we have reactivity occuring on two different levels, as shown in Figure \ref{fig:reactivecascade}. Firstly, when linked brushing occurs, we only need to recompute the number of (selected) cases within each bin. However, if the width of the bins changes, we need to recompute the histogram breaks \textit{and} the number of cases within each bin (since the bin limits have changed). As such, we can think of the reactive values that underlie the interactive plots as a directed acyclic graph (DAG) - see Figure \ref{fig:dag}. When a value of a node in the DAG changes in response to user input, only the nodes directly downstream of that node should update (but no others). It would be wasteful to e.g. recompute the histogram breaks after brushing. This kind of hierarchy-conscious computation is typical problem that appears in reactive programming \citep[see e.g.][]{doglio2016}, and as such, an efficient implementation of a mid-level interactive data visualization system should be reactive.            
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=70mm]{./figure04.pdf}
+\caption{DAG of a reactive cascade in an interactive histogram}
+\label{fig:dag}
+\end{figure}
 
 \subsubsection{Visual and Computational Coherency}
 \label{sec:coherency}
 
-Perhaps more importantly, different types of interaction also place a limit on what summaries will be computationally and visually coherent. For example, suppose we have an interactive visualization that consists of a linked barplot and a scatterplot. Further, let's suppose that the barplot displays the means of some continuous variable, within the levels of the variable on the x-axis (this type of plot is also sometimes called "dynamite plot", when error bars are shown). We want the user to be able to perform linked brushing on the two plots in a reciprocal way - clicking-and-dragging to select points in the scatterplot should highlight parts of the corresponding bar or bars, and vice versa, selecting a bar should highglight the corresponding points.
-
-We immediately run into several problems. The first is shown in Figure \ref{fig:empty}: how do we draw an empty selection? In a barplot of sums or counts, 0 is a meaningful default value, since the sum or count of a set with no elements is zero. However, the mean of an empty set is not defined. We could simply not draw the bar, but this will decohere the statistical summary from the visual representation: the absence of a bar may signal that either no cases are selected and the mean is undefined, or that there are selected cases and their mean is equal to the lower y-axis limit.
+Perhaps more importantly, different types of interaction also place a limit on what summaries will be computationally and visually coherent. For example, suppose we have a linked barplot and a scatterplot. Further, let's suppose that the barplot displays the means of some other continuous variable (for every level of the x-axis variable). We want the plots to support two-way linked brushing - if the user clicks-and-dragging to select points on the scatterplot, it should highlight parts of the corresponding bars, and vice versa, selecting a bar should highglight the corresponding points.
 
 \begin{figure}[H]
 \centering
@@ -225,20 +224,22 @@ We immediately run into several problems. The first is shown in Figure \ref{fig:
 \label{fig:empty}
 \end{figure}
 
-Second, if there are multiple selections present within a single x-axis variable level, how do we draw them? In a sum or count bar, we can stack selected groups on top of each other, and the total height of the stacked bar is equal to the sum of the heights of the sub-bars. This is not the case for mean. The mean of the group means does not have to equal the grand mean, and there is no idiosyncratic way of visually combining multiple means together. We could draw the means side-by-side as separate bars (a technique called "dodging" in \texttt{ggplot2}), however, this complicates the two-way reciprocal nature of the linked brushing - the user can no longer simply select the single unambiguous stacked bar, but instead has to learn by experience whether they can select one of the dodged group bars individually or whether they have to select all bars jointly, or some combination of both.
+We immediately run into several problems. The first is shown in Figure \ref{fig:empty}: how do we draw an empty selection? In a barplot of sums or counts, 0 is a meaningful default value as the sum or count of a set with no elements. However, the mean of an empty set is not defined. We could choose to just not draw the bar of the mean of 0 cases, but this will decouple the statistical summary from the visual representation: now, then the absence of a bar may signal that either no cases are selected or that there are selected cases and their mean is equal to the lower y-axis limit. Conversely, in the barplot of sums, the absence of a bar always indicates that the sum is 0, regardless of whether no cases are selected or whether they all have the value 0 - the visual representation of the statistic is valid either way.  
+
+Second, how do we draw multiple selections? In a sum or count bar, we can stack selected groups on top of each other, and the total height of the stacked bar is always equal to the sum of the heights of the sub-bars, as can be seen in Figure \ref{fig:stacking}. This is not the case for mean: the mean of the group means does not equal the grand mean (except by luck), and there is no other idiosyncratic way of combining means. We could draw the group means side-by-side as separate bars (a technique called "dodging" in \texttt{ggplot2}), however, this muddles the two-way reciprocal nature of the linked brushing - while before, the user could simply select the stacked bar as a single, unambiguous entity, they now have to learn by experience whether the dodged group bars can be selected individually or jointly.
 
 \begin{figure}[H]
 \centering
 \includegraphics[height=70mm]{./figure02.pdf}
 \caption{Sums/counts can be stacked but means cannot}
-\label{fig:empty}
+\label{fig:stacking}
 \end{figure}
 
-Finally, and thirdly, when computing the mean, we have to keep track of two quantities: running sum and running count. If we wanted to combine two means, we would need to have access to both, not just the computed values. In contrast, for sum and count we need to keep track of one value only and the values can be combined without reference to anything else. This is not a big problem with mean and the computation can still be easily parallelized, but other types of summaries may be more tricky.
+Finally, and thirdly, when computing the mean, we have to keep track of two quantities: running sum and running count. If we wanted to combine two means, we would need to have access to both, not just the computed values. In contrast, for sum and count we need to keep track of one value only and the values can be combined without reference to anything else. This is not a big problem with mean and the computation can still be easily parallelized, but for other types of summaries this may turn out to be more difficult.
 
 \subsubsection{Need for Structure}
 
-The picture that emerges is that, when it comes to interactive data visualization, some types of statistical summaries are better than others. Specifically, when more complex types of interactions are desired, such as reciprocal two-way linked brushing, not every kind of statistical summary will do. It is important to map out what types of constraints should statistical summaries meet in order to "work" and lead to visually and computationally coherent visualizations. Only by imposing some kind of structure can we lay the foundations for a true mid-level interactive data visualization system. 
+The picture that emerges is that, when it comes to interactive data visualization, some types of statistical summaries are better than others. Specifically, when more complex types of interactions are desired, such as reciprocal two-way linked brushing, not every kind of statistical summary will do. Some such as count and sum are well-behaved and allow us to represent empty selections and combinations of selections in an idiosyncratic way. In other summaries, such as mean, the lack of a sensible default value and the fact that the whole may be different from the sum of its parts leads to a decoupling between the interaction, visual representation, and the statistical summary. It is important to map out the properties that make some summaries "work" and others not. Only by imposing some kind of structure can we lay the foundations for a true mid-level interactive data visualization system. 
 
 
 \subsection{Few Relevant Bits of (Applied) Category Theory}
@@ -306,7 +307,7 @@ Such that, for all $m, m_1, m_2, m_3 \in M$:
 
 In plain English, monoids encapsulate the idea that \textit{the whole is exactly the sum of its parts} (where "sum" can be any arbitrary function that fulfills the properties). Examples of monoids include addition of natural numbers $(\mathbb{N}, 0, +)$, multiplication of reals $(\mathbb{R}, 1, *)$, and matrix multiplication $(\mathbf{Matrix}, \mathbf{I}, \cdot)$, where $\mathbf{I}$ is the identity matrix and the $\cdot$ infix operator is typically omitted by convention. As counterexample, exponentiation is not a monoid, because because it is not associative ($x^{(y^z)} \neq (x^y)^z$). 
 
-Another important aside is that the set $M$ does not need to involve any numerical quantities. For example, given any set $S$, the set union $(S, \varnothing, \cup)$ and set intersection $(S, S, \cap)$ are also monoids. String concatenation (e.g. the \texttt{paste()} function in R) is also a perfectly valid monoid: 
+Another important aside is that monoids do not need to concern just numerical quantities but the definition is much broader. For example, given any set $S$, the set union $(S, \varnothing, \cup)$ and set intersection $(S, S, \cap)$ are also monoids. String concatenation (e.g. the \texttt{paste()} function in R) is also a perfectly valid monoid: 
 
 \begin{itemize}
 \item \texttt{paste("hello", "") == paste("", "hello") == "hello"}
@@ -336,7 +337,7 @@ In programming, monoids are most typically encountered in the context of arrays,
 \subsubsection{Categories}
 \label{sec:categories}
 
-A monoid is actually a special case of a much more general concept called \textit{category}. A category $\mathcal{C}$ consists of:
+The structures we have discussed so far are actually special cases of a much more general concept called \textit{category}. A category $\mathcal{C}$ consists of:
 
 \begin{enumerate}
 \item A collection of elements $\text{Ob}(\mathcal{C})$ called the \textit{objects} of $\mathcal{C}$
@@ -354,18 +355,111 @@ Such that:
 \end{enumerate}
 
 
-As was mentioned in Section \ref{sec:functions}, morphisms can be thought of as generalizations of functions: they take one object within a category to another object within the same category, and their composition is associative, just like with regular functions. However, unlike in regular functions, the objects in the category are left unspecified and do not have form elements of any set. The identity morphism guarantees there is always at least one way to start and arrive at the same object, and its composition with other morphisms has no effect.
+As was mentioned in Section \ref{sec:functions}, morphisms can be thought of as generalizations of functions: they take one object within a category to another object within the same category, and their composition is associative, just like with regular functions. However, unlike in regular functions, the objects in the category are left unspecified and do not have form a set. The identity morphism guarantees there is always at least one way to start and arrive at the same object, and its composition with other morphisms has no effect.
 
-Returning to monoids, these can recast as a category with one object with a single non-identity morphism going from the object back to itself. As a concrete example, given the monoid $(\mathbb{N}, 0, +)$, we can represent this as a category with a single object $z$ and a morphism $f$ (and identity morphism $id_a$). The identity morphism will then play the role of the monoidal unit $e = id_a$, function composition will play the role of the monoidal product, and the number of times we compose the function will determine the element of the set: $\{0, 1, 2, \ldots \} = \{id_a, f, (f \circ f), (f \circ f \circ f), \ldots \}$. The associativity and unitality properties of monoids will be fulfilled as a result of the same properties being defined on categories.  
+Preorders can be understood as categories with at most one morphism between any two objects: a morphism $\leq : a \to b$ exists between $a$ and $b$ if and only if $a \leq b$. Transitivity then carries over as composition: if $f: a \to b \cong a \leq b$ and $g: b \to c \cong b \leq c$, then $g \circ f \cong a \leq c$. Similarly, monoids, can be understood as categories with a single (non-identity) morphism, going from itself back to itself. For example, given the monoid $(\mathbb{N}, 0, +)$, we can represent this as a category with a single object $z$ and a morphism $f$ (and identity morphism $id_a$). The identity morphism will then play the role of the monoidal unit $e = id_a$, function composition will play the role of the monoidal product, and the number of times we compose the function will determine the element of the underlying set/preorder: $\{0, 1, 2, \ldots \} = \{id_a, f, (f \circ f), (f \circ f \circ f), \ldots \}$. The associativity and unitality properties of monoids will be fulfilled as a result of the same properties being defined on categories.  
+
+\subsection{Functors}
+
+Since morphisms take one object to another within the same category, one can wonder if there is also a way to take one category to another. This leads to the definition of \textit{functors}. To specify a functor $F$ from category $\mathcal{C}$ to category $\mathcal{D}$, denoted as $F: \mathcal{C} \to \mathcal{D}$ we need:
+
+\begin{enumerate}
+\item For every object $c \in \text{Ob}(\mathcal{C})$, an object $F(c) \in \text{Ob}(\mathcal{D})$
+\item For every morphism $f: a_1 \to a_2$ in $\mathcal{C}$, a morphism $F(f): F(a_1) \to F(a_2)$ in $\mathcal{D}$ 
+\end{enumerate}
+
+Such that:
+
+\begin{enumerate}
+\renewcommand{\theenumi}{\alph{enumi}}
+\item For every object $a \in \text{Ob}(\mathcal{C})$, $F(id_a) = id_{F(a)}$
+\item For every three objects $a_1, a_2, a_3 \in \text{Ob}(\mathcal{C})$ and two morphisms $f \in \mathcal{C}(a_1, a_2)$ and $g \in \mathcal{C}(a_2, a_3)$, $F(g \circ f) = F(g) \circ F(f)$
+\end{enumerate}
+
+This means that, using a functor, we can map objects from one category to another while preserving structure (identity and composition). The mapping does not have to be one-to-one: multiple objects or morphisms in $\mathcal{C}$ can be compressed into a single object/morphism in $\mathcal{D}$. For example, as was mentioned in Section \ref{sec:categories}, pre-orders are categories, and if we take $\mathcal{C}$ to be the preorder on natural numbers $(\mathbb{N}, \leq)$ and $\mathcal{D}$ to be the preorder on booleans $(\mathbb{B}, \leq)$, we could define a functor $F: \mathcal{C} \to \mathcal{D}$ that takes every natural number and maps it to \textbf{False} if it is less than or equal to 5 and to \textbf{True} if it is greater than 5. This preserves identity since e.g. $F(id_4) = id_{\text{False}}$ and also composition, since, remembering that morphisms in pre-orders are order relations, $F(4 \leq 6) = \text{False} \leq \text{True}$ (where $f: 4 \leq 5$, $g: 5 \leq 6$, and $g \circ f = 4 \leq 6$). Monotone maps between pre-orders like this one are also called a \textit{monotone maps}.
+
+Functors are a very useful idea in programming since they allow us to abstract away implementation while preserving some kind of behavior (structure). They are typically encountered as endofunctors, i.e. functors that map from a category back to itself. For example, arrays are probably the most popular type of endofunctor and the behavior that they preserve is that functions get applied to every element: e.g. in JavaScript, \texttt{Array.map(f)} will apply \texttt{f} to every element, such that \texttt{[1, 2, 3].map(double) >> [2, 4, 6]}. However, functors can be constructed to preserve any kind of behavior. For example, we could construct a new functor in JavaScript (using OOP Class methods to implement polymorphism) as follows:      
+
+\begin{verbatim}
+
+class Timer {
+  
+  constructor(value, times) {
+    this.value = value
+    this.times = times
+  }
+  
+  map = (fun) => {
+    const {value, times} = this
+    const start = performance.now()
+    const result = fun(value)
+    const end = performance.now()
+    times.push(end - start)
+    
+    return new Timer(value, times)
+    }
+    
+}
+
+\end{verbatim}
+
+Now, whenever we use a function on an instance of the timer using the \texttt{.map} method, we will also time its execution and record, e.g. \texttt{new Timer(largeArray, []).map(double).map(square).times} will return an array with two values, one for the time it took to double all values and another for how long it took to square them (after the doubling). It is easy to show that this preserves composition: \texttt{timer.map(double).map(square)} should yield the same result as \texttt{timer.map((x) => square(double(x))} (baring differences in timing which are due to low-level implementation).    
 
 
 % ----------------------------------------------------------------------
 \section{So What's New?}
 \label{sec:whatsnew}
 
-As was laid out in the previous sections, when compared to traditional, static visualization, interactive data visualization presents an idiosyncratic set of challenges and considerations. Specifically, when drawing and interacting with statistical summaries of the data, the user needs to carefully navigate the landscape of these summaries, with only some producing visually and computationally coherent results. The goal of this project is to map out this landscape, and develop theory that will allow everyone to produce coherent interactive graphics. To this end, ideas and concepts from category theory will be used. As a first taste, returning to the problem of two-way linked brushing described in \ref{sec:coherency}, through the lense of category theory it is clear that the summaries that will produce coherent graphics need to fulfill the contract of a monoid, or more specifically \textit{symmetric monoidal structure on total order} (since the things we draw such as length, width, area are all in $\mathbb{R}^+$, and the direction of combining the selections should not matter)      
+As was laid out in the previous sections, when compared to traditional, static visualization, interactive data visualization presents an idiosyncratic set of challenges and considerations. Specifically, when drawing and interacting with statistical summaries of the data, the user needs to carefully navigate the landscape of these summaries, with only some producing visually and computationally coherent results. The goal of this project is to map out this landscape, and develop theory that will allow everyone to produce coherent interactive graphics. To this end, ideas and concepts from category theory will be used. 
 
-Further, the project also seeks to apply this theory and implement an interactive data visualization system which adheres to it. To this end, a prototype has already been developed in JavaScript and is available at: \texttt{https://github.com/bartonicek/plotscaper}. Going forward, the following broad goals will be pursued (see Section \ref{sec:goals} for a detailed breakdown):  
+Here's a rough sketch of the model so far:
+
+\begin{itemize}
+
+\item \textbf{Each graphical object represents a partition of the data space.}
+  \begin{itemize}
+  \item I.e., assuming long data format, each object represents subset of the rows (cases).
+  \item One object can represent multiple cases but each case belongs to one object only.
+  \item The \textit{entire data space} is also a valid partition: e.g. a time-series line or a density polygon may represent all cases in the data.
+  \end{itemize}
+  
+\item \textbf{The partitions can be nested or sub-partitioned into finer partitions}
+  \begin{itemize}
+
+  \item This is most relevant in the case of linked brushing: by interaction (e.g. clicking-and-dragging) we can select object and assign its respective cases to a group.
+  \item Each case can belong to one object and one group only; objects can combine multiple groups
+  \end{itemize}
+
+\item \textbf{There is a common set of one or more functions (statistical summaries) applied to every partition}
+
+  \begin{itemize}
+  \item The outputs of these functions will be used as relevant attributes/dimensions of the graphical objects, e.g. height of bars, area of squares/circles, etc...
+  \item The summaries have to be computed on all parts and across all levels of nesting: e.g. if we are counting the number of cases \textit{within each group within each bar}, we also have to count the number of cases \textit{within each bar} (ignoring group), and the number of cases in the data as a whole (ignoring bar and group). 
+  \item Forcing the summaries to apply across all partitions consistently will allow for switching between different types of visualizations that represent the same information at different levels of nesting: for example, histograms (count within group within bar for y-coordinate) and spineplots (count within group within bar for y-coordinates \textit{and} count within bar for x-coordinate)
+  \end{itemize}
+
+\item \textbf{For coherent two-way interaction, the summaries have to form a \textit{symmetric monoidal structure on a total order}}.
+
+  \begin{itemize}
+  
+  \item I.e. we need a default value for empty selection and a way of combining values, such that the summary on the entire data space is the same as the combined summary of the summaries on the parts
+  \item The monoidal product has to be \textit{symmetric}: it should not matter in what order we combine the selections (there is no order to the groups) 
+  \item The monoidal product should also be \textit{monotonic}: the combined result of two values has to be greater than or equal to either of the values alone (this property may not be necessary in every type of plot but seems desirable in most).
+  \item \textit{Total order} order is required because data visualization is about comparison: every two objects have to be comparable along the relevant dimension. Most often, the total order will be $\mathbb{R}^+$, since so are height, width, area, angle,... 
+  \end{itemize}
+  
+\item \textbf{The computation of the summary function(s) should happen reactively}
+  \begin{itemize}
+  \item That is, if one level of partitioning changes, only the summary statistics on its children should change but the summary statistics upstream should not be recomputed
+  \item For example, in an interactive histogram, linked brushing should not affect breaks, only selection, but changing binwidth should affect both the breaks and selection 
+  \item An object/class on which these reactive changes take place should be implemented as (endo)functor: users should only apply summary functions and the reactive linking should happen in the background  
+  \end{itemize}
+
+\end{itemize}
+
+
+
+Further, the project also seeks to apply the theory above and implement an interactive data visualization system which adheres to it. To this end, a prototype has already been developed in JavaScript and is available at: \texttt{https://github.com/bartonicek/plotscaper}. Going forward, the following broad goals will be pursued (see Section \ref{sec:goals} for a detailed breakdown):  
 
 \begin{enumerate}
 
@@ -466,7 +560,7 @@ Date & Activity \\
 2024-01-01 & Finalize version 1.0 of \texttt{plotscaper} and publish on \texttt{CRAN}. \\
 2024-03-01 & Begin work on formalizing the manuscript \\
 2024-06-01 & Attend a statistical computing/data visualization conference \\
-2025-03-01 & Submit my PhD thesis. \\
+2025-03-01 & Submit the thesis. \\
 \hline
 \end{tabular}
 \end{table}
