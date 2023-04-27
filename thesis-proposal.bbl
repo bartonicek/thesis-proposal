@@ -1,4 +1,4 @@
-\begin{thebibliography}{54}
+\begin{thebibliography}{56}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \expandafter\ifx\csname url\endcsname\relax
   \def\url#1{\texttt{#1}}\fi
@@ -135,6 +135,13 @@ Leman, S.~C., House, L., Maiti, D., Endert, A., North, C., 2013. Visual to
 \bibitem[{Milewski(2018)}]{Milewski2018}
 Milewski, B., 2018. Category theory for programmers. Blurb.
 
+\bibitem[{Moritz et~al.(2018)Moritz, Wang, Nelson, Lin, Smith, Howe, and
+  Heer}]{moritz2018}
+Moritz, D., Wang, C., Nelson, G.~L., Lin, H., Smith, A.~M., Howe, B., Heer, J.,
+  2018. Formalizing visualization design knowledge as constraints: Actionable
+  and extensible models in draco. IEEE transactions on visualization and
+  computer graphics 25~(1), 438--448.
+
 \bibitem[{Pike et~al.(2009)Pike, Stasko, Chang, and O'connell}]{pike2009}
 Pike, W.~A., Stasko, J., Chang, R., O'connell, T.~A., 2009. The science of
   interaction. Information visualization 8~(4), 263--274.
@@ -222,6 +229,12 @@ Urbanek, S., 2011. iplots extreme: next-generation interactive graphics design
 Urbanek, S., Theus, M., 2003. iplots: high interaction graphics for r. In:
   Proceedings of the 3rd International Workshop on Distributed Statistical
   Computing. Citeseer.
+
+\bibitem[{Vaidyanathan et~al.(2021)Vaidyanathan, Xie, Allaire, Cheng, Sievert,
+  and Russell}]{htmlwidgets2021}
+Vaidyanathan, R., Xie, Y., Allaire, J., Cheng, J., Sievert, C., Russell, K.,
+  2021. htmlwidgets: HTML Widgets for R. R package version 1.5.4.
+\newline\urlprefix\url{https://CRAN.R-project.org/package=htmlwidgets}
 
 \bibitem[{VanderPlas et~al.(2018)VanderPlas, Granger, Heer, Moritz,
   Wongsuphasawat, Satyanarayan, Lees, Timofeev, Welsh, and
